@@ -1,4 +1,6 @@
-include_once("model/tshirt.php")
+<?php
+
+include_once("model/tshirt.php");
 
 class Model{
 	public function getTshirt(){
@@ -6,3 +8,5 @@ class Model{
 		return $returnvalue;
 	}
 }
+
+?>
