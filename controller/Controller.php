@@ -47,6 +47,9 @@ class Controller{
 				case "login":
 					include 'view/login.php';
 					break;
+				case "auth":
+					$this->authenticate();
+					break;
 			}
 		}
 	}
@@ -54,6 +57,10 @@ class Controller{
 	public function authenticate(){
 		if(isset($_POST["user"]) && isset($_POST["password"]))
 			$credential_model = $this->model->getAuth($_POST["user"],$_POST["password"]);
+		if($credential_model->isAuthenticated()){
+			session_start();
+			$_SESSION["username"] = $_POST["user"];
+		}
 	}
 }
 

@@ -8,8 +8,9 @@ class Model{
 		$returnvalue = new tshirt("tshirtname");
 		return $returnvalue;
 	}
-	public function getAuth(){
-
+	public function getAuth($user,$pass){
+		$authentication_result = new auth_user($user,$pass); 
+		return $authentication_result;
 	}
 }
 
