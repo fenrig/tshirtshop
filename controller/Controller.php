@@ -41,7 +41,7 @@ class Controller{
 		if(isset($page)){
 			switch($page){
 				case "tshirt":
-					$tshirt = $this->model->getTshirt($page);
+					$tshirt = $this->model->getTshirt($post);
 					include 'view/viewtshirt.php';
 					break;
 				case "login":

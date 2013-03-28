@@ -2,7 +2,7 @@
 <head></head>
 <body>
 	<?php
-		echo '<h1>' . $tshirt->name . '</h1>';
+		echo '<h1>' . $tshirt->description . '</h1>';
 
 	?>
 </body>
