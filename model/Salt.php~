@@ -1,0 +1,5 @@
+$salt[3];
+$salt[0] = "Salt@Pepper";
+$salt[1] = "Pepper@Salt";
+$salt[2] = "@SaltyPepper@";
+

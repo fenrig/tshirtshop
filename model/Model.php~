@@ -2,7 +2,6 @@
 
 include_once("model/tshirt.php");
 include_once("model/authentication.php");
-include_once("model/regis.php");
 
 class Model{
 	public function getTshirt($tid){

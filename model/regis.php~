@@ -1,0 +1,33 @@
+<?php
+include_once("includes/sql.php");
+
+class reg_user{
+	private $sql;
+	private $reg;
+	
+	public function __construct($user,$pass1,$pass2){		
+		$this->sql  = new dbconnection();
+		$this->reg = FALSE; 
+		$this->register($user,$pass1,$pass2);
+	}
+
+	public function register($user,$pass1,$pass2){
+		echo "tette";		
+		if (strcmp($pass1,$pass2) == 0 ) {
+			echo "tette";	 		
+			include_once("includes/Salt.php");
+			$result = 
+			$this->sql->query("INSERT INTO `users` (`uid`,`username`, `password`) VALUES ('NULL','" .$user."','".md5($salt[rand(0, 2)].$pass1)."');");
+			$this->reg = $result;
+			echo $result;
+			echo "tette";	
+			return $this->reg;
+		}
+	}
+
+	public function isRegistered(){
+		return $this->reg;
+	}
+}
+
+?>
