@@ -50,7 +50,7 @@ class Controller{
 				case "auth":
 					$this->authenticate();
 					break;
-				case "Register":
+				case "register":
 					include 'view/Register.php';
 					break;
 				case "regis":
