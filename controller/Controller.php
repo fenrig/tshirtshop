@@ -56,6 +56,9 @@ class Controller{
 				case "regis":
 					$this->register();
 					break;
+				default:
+					$this->notFound();
+					break;
 			}
 		}
 	}
@@ -73,10 +76,15 @@ class Controller{
 		if(isset($_POST["user"]) && isset($_POST["password1"]) && isset($_POST["password2"])) {
 			$credential_model = $this->model->getRegis($_POST["user"],$_POST["password1"],$_POST["password2"]);
 			if ($credential_model->isRegistered()) {
-				session_start();
+				if(!isset($_SESSION))
+					session_start();
 				$_SESSION["username"] = $_POST["user"];
 			}
 		}
+	}
+
+	public function notFound() {
+		include_once("view/404.php");
 	}
 }
 
