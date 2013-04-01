@@ -23,7 +23,8 @@ echo curPageURL();
 
 
 class Controller{
-	public $model;
+	private $model;
+	private $view;
 
 	public function __construct(){
 		$this->model = new Model();
@@ -39,24 +40,26 @@ class Controller{
 			$post = $uri[2];
 		}
 		// END ADDRESS RESOLUTION
+		$this->view = new template_engine();
 		if(isset($page)){
 			switch($page){
 				case "tshirt":
 					if(isset($post)){
+						global $tshirt;
 						$tshirt = $this->model->getTshirt($post);
-						include 'view/viewtshirt.php';
+						$this->view->page("viewtshirt");
 					}else{
 						$this->notFound();
 					}
 					break;
 				case "login":
-					include 'view/login.php';
+					$this->view->page("login");
 					break;
 				case "auth":
 					$this->authenticate();
 					break;
 				case "register":
-					include 'view/Register.php';
+					$this->view->page("Register");
 					break;
 				case "regis":
 					$this->register();
@@ -66,13 +69,9 @@ class Controller{
 					break;
 			}
 		}else{
-			global $test;
-			$test = "Jeeeeeeeeeej hij kan me globalen werken";
-			$view = new template_engine("home");
-			echo $view->output();
-
-			//include_once("view/home.php");
+			$this->view->page("home");
 		}
+		echo $this->view->output();
 	}
 
 	public function authenticate(){
@@ -96,7 +95,7 @@ class Controller{
 	}
 
 	public function notFound() {
-		include_once("view/404.php");
+		$this->view->page("404");
 	}
 }
 

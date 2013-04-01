@@ -5,8 +5,9 @@ class template_engine{
 	private $page_content;
 	private $template;
 
-	public function __construct($template_file){
-		$this->page($template_file);
+	public function __construct($template_file = NULL){
+		if($template_file <> NULL)
+			$this->page($template_file);
 	}
 
 	public function page($template_file){
