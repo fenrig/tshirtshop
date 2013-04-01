@@ -66,6 +66,7 @@ class Controller{
 					break;
 			}
 		}else{
+			global $test;
 			$test = "Jeeeeeeeeeej hij kan me globalen werken";
 			$view = new template_engine("home");
 			echo $view->output();
