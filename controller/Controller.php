@@ -1,6 +1,7 @@
 <?php
 
 include_once("model/Model.php");
+include_once("template_engine/template.php");
 
 /*
 // -------------
@@ -41,8 +42,12 @@ class Controller{
 		if(isset($page)){
 			switch($page){
 				case "tshirt":
-					$tshirt = $this->model->getTshirt($post);
-					include 'view/viewtshirt.php';
+					if(isset($post)){
+						$tshirt = $this->model->getTshirt($post);
+						include 'view/viewtshirt.php';
+					}else{
+						$this->notFound();
+					}
 					break;
 				case "login":
 					include 'view/login.php';
@@ -60,6 +65,12 @@ class Controller{
 					$this->notFound();
 					break;
 			}
+		}else{
+			$test = "Jeeeeeeeeeej hij kan me globalen werken";
+			$view = new template_engine("home");
+			echo $view->output();
+
+			//include_once("view/home.php");
 		}
 	}
 
