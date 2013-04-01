@@ -10,6 +10,7 @@ class tshirt extends clothing{
 	public $sleeves;
 
 	public function __construct($tid){
+		$this->tid = NULL;
 		$this->sql = new dbconnection();
 		$result = $this->sql->query("SELECT * FROM tshirt WHERE tid = " . $tid);
 		// todo

@@ -47,7 +47,10 @@ class Controller{
 					if(isset($post)){
 						global $tshirt;
 						$tshirt = $this->model->getTshirt($post);
-						$this->view->page("viewtshirt");
+						if(! $tshirt->tid == NULL)
+							$this->view->page("viewtshirt");
+						else
+							$this->notFound();
 					}else{
 						$this->notFound();
 					}
