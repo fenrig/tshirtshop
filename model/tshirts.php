@@ -3,9 +3,6 @@
 include_once("includes/sql.php");
 
 class tshirts_element implements arrayaccess{
-	// TODO: add foreach functionality
-	// http://stackoverflow.com/questions/9973080/using-foreach-over-an-object-implementing-arrayaccess-and-iterator
-	
 	private $tshirt_element;
 
 	public function __construct($element){
@@ -57,7 +54,8 @@ class tshirts_element implements arrayaccess{
 }
 
 class tshirts implements arrayaccess{
-	// eigenschappen
+	// TODO: add foreach functionality
+	// http://stackoverflow.com/questions/9973080/using-foreach-over-an-object-implementing-arrayaccess-and-iterator
 	private $elements;
 	private $no_elements;
 	private $sql;
