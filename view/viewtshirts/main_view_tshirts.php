@@ -1,7 +1,7 @@
 <?php
 	global $tshirts;
-	foreach($tshirts as $tshirt){
-		echo '<div>' . $tshirt['description'] . '</div>';
+	// foreach doesn't work
+	for($i = 0; $i < $tshirts->length(); $i++){
+		echo '<div>' . $tshirts[$i]['description'] . '</div>';
 	}
-	
 ?>
