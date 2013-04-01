@@ -28,6 +28,7 @@ class Controller{
 
 	public function __construct(){
 		$this->model = new Model();
+		$this->view = new template_engine();
 	}
 
 	public function invoke(){
@@ -40,7 +41,6 @@ class Controller{
 			$post = $uri[2];
 		}
 		// END ADDRESS RESOLUTION
-		$this->view = new template_engine();
 		if(isset($page)){
 			switch($page){
 				case "tshirt":
@@ -48,7 +48,7 @@ class Controller{
 						global $tshirt;
 						$tshirt = $this->model->getTshirt($post);
 						if(! $tshirt->tid == NULL)
-							$this->view->page("viewtshirt");
+							$this->view->page('viewtshirt');
 						else
 							$this->notFound();
 					}else{
@@ -56,23 +56,40 @@ class Controller{
 					}
 					break;
 				case "login":
-					$this->view->page("login");
+					$this->view->page('login');
 					break;
 				case "auth":
 					$this->authenticate();
 					break;
 				case "register":
-					$this->view->page("Register");
+					$this->view->page('Register');
 					break;
 				case "regis":
 					$this->register();
+					break;
+				case "tshirts":
+					if($post < 1)
+						$this->view->page('404');
+					global $tshirts;
+					$size = 20;
+					if(isset($post)){
+						$pageno = intval($post);
+						$pageno--;
+					}else{
+						$pageno = 0;
+					}
+					$tshirts = $this->model->getTshirts($pageno,$size);
+					if($tshirts->length() == 0)
+						$this->view->page('viewtshirts');
+					else
+						$this->view->page('404');
 					break;
 				default:
 					$this->notFound();
 					break;
 			}
 		}else{
-			$this->view->page("home");
+			$this->view->page('home');
 		}
 		echo $this->view->output();
 	}
