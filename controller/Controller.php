@@ -37,7 +37,7 @@ class Controller{
 		if(sizeof($uri) > 1 && !empty($uri[1])){
 			$page = $uri[1];
 		}
-		if(sizeof($uri) > 2 && !empty($uri[2])){
+		if(sizeof($uri) > 2 /* && !empty($uri[2]) */){
 			$post = $uri[2];
 		}
 		// END ADDRESS RESOLUTION
@@ -68,8 +68,6 @@ class Controller{
 					$this->register();
 					break;
 				case "tshirts":
-					if($post < 1)
-						$this->view->page('404');
 					global $tshirts;
 					$size = 20;
 					if(isset($post)){
@@ -79,7 +77,7 @@ class Controller{
 						$pageno = 0;
 					}
 					$tshirts = $this->model->getTshirts($pageno,$size);
-					if($tshirts->length() == 0)
+					if($tshirts->length() > 0)
 						$this->view->page('viewtshirts');
 					else
 						$this->view->page('404');
