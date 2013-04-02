@@ -67,11 +67,16 @@ class tshirts implements arrayaccess{
 		$this->tid = NULL;
 		$this->sql = new dbconnection();
 		$result = $this->sql->query('SELECT * FROM `tshirt` INNER JOIN `clothings` ON tshirt.cid = clothings.cid LIMIT ' . $lower . ',' . $upper);
-		$this->no_elements = mysqli_num_rows($result);
-		while($row = mysqli_fetch_array($result)){
-			$element = new tshirts_element($row);
-			array_push($this->elements, $element);
+		if($result == False){
+			$this->no_elements = 0;
+		}else{
+			$this->no_elements = mysqli_num_rows($result);
+			while($row = mysqli_fetch_array($result)){
+				$element = new tshirts_element($row);
+				array_push($this->elements, $element);
+			}
 		}
+		
 	}
 
 	public function length(){
