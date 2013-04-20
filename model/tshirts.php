@@ -91,9 +91,9 @@ class tshirts implements arrayaccess, Iterator{
 			$this->tid = NULL;
 			$this->sql = new dbconnection();
 			$result = $this->sql->query('SELECT * FROM `tshirt` INNER JOIN `clothings` ON tshirt.cid = clothings.cid LIMIT ' . $lower . ',' . $upper);
-			parse_sql_result($result);
+			$this->parse_sql_result($result);
 		}else{
-			parse_sql_result($sql_result);
+			$this->parse_sql_result($sql_result);
 		}
 	}
 

@@ -84,9 +84,17 @@ class Controller{
 					break;
 				case "search":
 					if( count($_GET) != 0){
-						$this->model->getSearch();
+						$general_term = NULL;
+						if(isset($_GET["q"])){
+							$general_term = $_GET["q"];
+						}
+						global $tshirts;
+						$tshirts = $this->model->getSearch($general_term);
+						$this->view->page('searchresult');
+					}else{
+						$this->view->page('search');
 					}
-					$this->view->page('search');
+					
 					break;
 				default:
 					$this->notFound();

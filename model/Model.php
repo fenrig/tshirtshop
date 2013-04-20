@@ -24,10 +24,14 @@ class Model{
 	}
 
 	public function getSearch($general_term = NULL){
-		$sql_string = 'SELECT * FROM `tshirt` INNER JOIN `clothings` ON tshirt.cid = clothings.cid';
+		$sql_string = 'SELECT * FROM `tshirt` INNER JOIN `clothings` ON tshirt.cid = clothings.cid WHERE';
 		if($general_term != NULL){
-			2 + 2;
+			$sql_string += ' clothings.description LIKE \'%' . $general_term . '\'%';
 		}
+		$sql  = new dbconnection();
+		$result = $sql->query($sql_string);
+		echo mysqli_num_rows($result);
+		return new tshirts(NULL,NULL,$result);
 	}
 }
 

@@ -16,11 +16,11 @@ class auth_user{
 		foreach ($salt as &$value) {		
 			$result = $this->sql->query("SELECT * FROM users WHERE username='" . $user . "' and password='" . md5($value.$pass) ."');");
 			if(mysqli_num_rows($result) == 1) {
-				$this->auth=1;				
+				$this->auth = TRUE;				
 				return $this->auth;			
 			}
 		}
-		return $this->auth
+		return $this->auth;
 	}
 
 	public function isAuthenticated(){
