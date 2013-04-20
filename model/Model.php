@@ -20,17 +20,16 @@ class Model{
 	}
 
 	public function getTshirts(&$number_of_page, &$size){
-		return new tshirts($number_of_page,$size);
+		return new tshirts($number_of_page,$size,NULL);
 	}
 
-	public function getSearch($general_term = NULL){
+	public function getSearch($general_term){
 		$sql_string = 'SELECT * FROM `tshirt` INNER JOIN `clothings` ON tshirt.cid = clothings.cid WHERE';
 		if($general_term != NULL){
-			$sql_string += ' clothings.description LIKE \'%' . $general_term . '\'%';
+			$sql_string .= ' clothings.description LIKE \'%' . $general_term . '%\'';
 		}
 		$sql  = new dbconnection();
 		$result = $sql->query($sql_string);
-		echo mysqli_num_rows($result);
 		return new tshirts(NULL,NULL,$result);
 	}
 }
