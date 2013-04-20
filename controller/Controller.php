@@ -88,8 +88,32 @@ class Controller{
 						if(isset($_GET["q"])){
 							$general_term = $_GET["q"];
 						}
+						$colors = NULL;
+						if(isset($_GET["colors"])){
+							$colors = $_GET["colors"];
+						}
+						$brands = NULL;
+						if(isset($_GET["brands"])){
+							$brands = $_GET["brands"];
+						}
+						$fabrics = NULL;
+						if(isset($_GET["fabrics"])){
+							$fabrics = $_GET["fabrics"];
+						}
+						$agegroup = NULL;
+						if(isset($_GET["age"])){
+							if($_GET["age"] != "None"){
+								$agegroup = $_GET["age"];
+							}
+						}
+						$sex = NULL;
+						if(isset($_GET["sex"])){
+							if($_GET["sex"] != "None"){
+								$sex = $_GET["sex"];
+							}
+						}
 						global $tshirts;
-						$tshirts = $this->model->getSearch($general_term);
+						$tshirts = $this->model->getSearch($general_term,$colors,$brands,$fabrics,$agegroup,$sex);
 						$this->view->page('searchresult');
 					}else{
 						$this->view->page('search');

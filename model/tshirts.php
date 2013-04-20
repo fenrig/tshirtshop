@@ -88,7 +88,6 @@ class tshirts implements arrayaccess, Iterator{
 		if($sql_result == NULL){
 			$lower = $number_of_page * $size;
 			$upper = (($number_of_page + 1) * $size) - 1;
-			
 			$this->tid = NULL;
 			$this->sql = new dbconnection();
 			$result = $this->sql->query('SELECT * FROM `tshirt` INNER JOIN `clothings` ON tshirt.cid = clothings.cid LIMIT ' . $lower . ',' . $upper);

@@ -2,5 +2,34 @@
 <head></head>
 <body>
 	<h1>Search</h1>
+	<form action="search/" method="get">
+		<input type="text" name="q" />
+		<input type="submit" /> 
+		<br />
+		blue <input type="checkbox" name="colors[]" value="blue" />
+		green <input type="checkbox" name="colors[]" value="green" />
+		<br />
+		lendesigns <input type="checkbox" name="brands[]" value="lendesigns" />
+		DarkyShirts (r) <input type="checkbox" name="brands[]" value="DarkyShirts (r)" />
+		<br />
+		cotton <input type="checkbox" name="fabrics[]" value="cotton" />
+		rune cloth <input type="checkbox" name="fabrics[]" value="rune cloth" />
+		<br />
+		agegroup 
+		<select name="age">
+			<option value="None">Any</option>
+			<option value="baby">baby</option>
+			<option value="child">child</option>
+			<option value="teenager">teenager</option>
+			<option value="adult">adult</option>
+			<option value="maternity">maternity</option>
+		</select>
+		<br />
+		<select name="sex">
+			<option value="None">Any</option>
+			<option value="male">male</option>
+			<option value="female">female</option>
+		</select>
+	</form>
 </body>
 </html>
