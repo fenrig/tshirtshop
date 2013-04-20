@@ -17,9 +17,9 @@ class tshirt extends clothing{
 		if(mysqli_num_rows($result) == 1){
 			$row = mysqli_fetch_array($result);
 			$this->tid = $tid;
-			$this->size = $row[2];
-			$this->format = $row[3];
-			$this->sleeves = $row[4];
+			# $this->size = $row[2];
+			$this->format = $row[2];
+			$this->sleeves = $row[3];
 			parent::__construct($row[1]);
 		}
 	}

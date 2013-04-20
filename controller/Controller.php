@@ -82,6 +82,12 @@ class Controller{
 					else
 						$this->view->page('404');
 					break;
+				case "search":
+					if( count($_GET) != 0){
+						$this->model->getSearch();
+					}
+					$this->view->page('search');
+					break;
 				default:
 					$this->notFound();
 					break;

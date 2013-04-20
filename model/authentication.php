@@ -12,9 +12,15 @@ class auth_user{
 	}
 
 	public function authenticate($user,$pass){
-		$result = $this->sql->query("SELECT * FROM users WHERE username='" . $user . "' and password='" . md5($pass) . "'");
-		$this->auth = (mysqli_num_rows($result) == 1);
-		return $this->auth;
+	include_once("includes/Salt.php");
+		foreach ($salt as &$value) {		
+			$result = $this->sql->query("SELECT * FROM users WHERE username='" . $user . "' and password='" . md5($value.$pass) ."');");
+			if(mysqli_num_rows($result) == 1) {
+				$this->auth=1;				
+				return $this->auth;			
+			}
+		}
+		return $this->auth
 	}
 
 	public function isAuthenticated(){

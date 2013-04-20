@@ -15,26 +15,26 @@ class tshirts_element implements arrayaccess{
 				return $this->tshirt_element[0];
 			case "cid":
 				return $this->tshirt_element[1];
-			case "size":
-				return $this->tshirt_element[2];
+#			case "size":
+#				return $this->tshirt_element[2];
 			case "format":
-				return $this->tshirt_element[3];
+				return $this->tshirt_element[2];
 			case "sleeves":
-				return $this->tshirt_element[4];
+				return $this->tshirt_element[3];
 			case "price":
-				return $this->tshirt_element[6];
+				return $this->tshirt_element[5];
 			case "color":
-				return $this->tshirt_element[7];
+				return $this->tshirt_element[6];
 			case "brand":
-				return $this->tshirt_element[8];
+				return $this->tshirt_element[7];
 			case "agegroup":
-				return $this->tshirt_element[9];
+				return $this->tshirt_element[8];
 			case "sex":
-				return $this->tshirt_element[10];
+				return $this->tshirt_element[9];
 			case "fabric":
-				return $this->tshirt_element[11];
+				return $this->tshirt_element[10];
 			case "description":
-				return $this->tshirt_element[12];
+				return $this->tshirt_element[11];
 			default:
 				return False;
 		}
@@ -53,20 +53,51 @@ class tshirts_element implements arrayaccess{
 	}
 }
 
-class tshirts implements arrayaccess{
+class tshirts implements arrayaccess, Iterator{
 	// TODO: add foreach functionality
 	// http://stackoverflow.com/questions/9973080/using-foreach-over-an-object-implementing-arrayaccess-and-iterator
+
 	private $elements;
 	private $no_elements;
 	private $sql;
+	// ---------------------
+	private $pointer = 0;
+	
+	public function rewind(){
+		$this->pointer = 0;
+	}
 
-	public function __construct($number_of_page, $size){
-		$lower = $number_of_page * $size;
-		$upper = (($number_of_page + 1) * $size) - 1;
-		$this->elements = array();
-		$this->tid = NULL;
-		$this->sql = new dbconnection();
-		$result = $this->sql->query('SELECT * FROM `tshirt` INNER JOIN `clothings` ON tshirt.cid = clothings.cid LIMIT ' . $lower . ',' . $upper);
+	public function current(){
+		return $this->elements[$this->pointer];
+	}
+
+	public function key(){
+		return $this->pointer;
+	}
+
+	public function next(){
+		++$this->pointer;
+	}
+
+	public function valid(){
+		return isset($this->elements[$this->pointer]);
+	}
+	// ---------------------
+	public function __construct($number_of_page = NULL, $size = NULL, $sql_result = NULL){
+		if($number_of_page == NULL){
+			$lower = $number_of_page * $size;
+			$upper = (($number_of_page + 1) * $size) - 1;
+			$this->elements = array();
+			$this->tid = NULL;
+			$this->sql = new dbconnection();
+			$result = $this->sql->query('SELECT * FROM `tshirt` INNER JOIN `clothings` ON tshirt.cid = clothings.cid LIMIT ' . $lower . ',' . $upper);
+			parse_sql_result($result);
+		}else{
+			parse_sql_result($sql_result);
+		}
+	}
+
+	public function parse_sql_result(&$result){
 		if($result == False){
 			$this->no_elements = 0;
 		}else{
@@ -76,7 +107,6 @@ class tshirts implements arrayaccess{
 				array_push($this->elements, $element);
 			}
 		}
-		
 	}
 
 	public function length(){

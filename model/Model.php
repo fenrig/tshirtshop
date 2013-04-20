@@ -4,6 +4,7 @@ include_once("model/tshirt.php");
 include_once("model/authentication.php");
 include_once("model/regis.php");
 include_once("model/tshirts.php");
+include_once("includes/sql.php");
 
 class Model{
 	public function getTshirt(&$tid){		
@@ -20,6 +21,13 @@ class Model{
 
 	public function getTshirts(&$number_of_page, &$size){
 		return new tshirts($number_of_page,$size);
+	}
+
+	public function getSearch($general_term = NULL){
+		$sql_string = 'SELECT * FROM `tshirt` INNER JOIN `clothings` ON tshirt.cid = clothings.cid';
+		if($general_term != NULL){
+			2 + 2;
+		}
 	}
 }
 
