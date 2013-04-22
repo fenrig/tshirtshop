@@ -2,6 +2,7 @@
 
 include_once("model/Model.php");
 include_once("template_engine/template.php");
+include_once("resources/resource_loader.php");
 
 /*
 // -------------
@@ -119,6 +120,27 @@ class Controller{
 						$this->view->page('search');
 					}
 					
+					break;
+				case "thumbn":
+					if(isset($post)){
+						thumbnail($post);
+					}else{
+						$this->notFound();
+					}
+					break;
+				case "fulln":
+					if(isset($post)){
+						fullnail($post);
+					}else{
+						$this->notFound();
+					}
+					break;
+				case "css":
+					if(isset($post)){
+						getcss($post);
+					}else{
+						$this->notFound();
+					}
 					break;
 				default:
 					$this->notFound();
