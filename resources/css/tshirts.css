@@ -1,5 +1,8 @@
 .product-grid{
 	display: block;
+	float: none;
+	clear: both;
+	position: relative;
 }
 
 .product-in-grid{

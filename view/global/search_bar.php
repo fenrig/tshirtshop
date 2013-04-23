@@ -11,39 +11,40 @@
 		<span>
 			<input type="text" class="search square" name="q" placeholder="Search..." />
 			<input class="searchbutton" type="submit" value="Search" />
+			<a class="optionslabel" onclick="document.getElementsByClassName('hiddensearch')[0].className = 'showsearch';">Options</a>
 		</span>
 		<div class="hiddensearch">
-			<div>
+			<div class="searchoptions" >
 				<fieldset>
 					<legend>Colors:</legend>
 <?php
 					while($color = mysqli_fetch_array($colors)){
-						echo $color[0] . '<input type="checkbox" name="colors[]" value="' . $color[0] . '" />';
+						echo '<input type="checkbox" name="colors[]" value="' . $color[0] . '" />' . $color[0] . ' <br />';
 					}		
 ?>
 				</fieldset>
 			</div>
-			<div>
+			<div class="searchoptions" >
 				<fieldset>
 					<legend>fabric</legend>
 <?php
 					while($fabric = mysqli_fetch_array($fabrics)){
-						echo $fabric[0] . '<input type="checkbox" name="fabrics[]" value="' . $fabric[0] . '" />';
+						echo '<input type="checkbox" name="fabrics[]" value="' . $fabric[0] . '" />' . $fabric[0] . ' <br />';
 					}
 ?>
 				</fieldset>
 			</div>
-			<div>
+			<div class="searchoptions" >
 				<fieldset>
 					<legend>brand</legend>
 <?php
 					while($brand = mysqli_fetch_array($brands)){
-						echo $brand[0] . '<input type="checkbox" name="brands[]" value="' . $brand[0] . '" />';
+						echo '<input type="checkbox" name="brands[]" value="' . $brand[0] . '" />' . $brand[0] . '<br />';
 					}
 ?>
 				</fieldset>
 			</div>
-			<div>
+			<div class="searchoptions smallersearchoptions" >
 				<fieldset>
 					<legend>sex</legend>
 					<select name="sex">
@@ -51,9 +52,7 @@
 						<option value="male">male</option>
 						<option value="female">female</option>
 					</select>
-				</fieldset>
-			</div>
-			<div>
+				</fieldset>			
 				<fieldset>
 					<legend>age</legend>
 					<select name="age">

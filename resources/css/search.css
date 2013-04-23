@@ -32,12 +32,47 @@ input[type=submit], input[type=submit]:hover {
 
 .searchbar {
 	width:95%;
-	height:50px;
-	padding:40px 25px;
+	/* height:50px; */
+	/* padding:40px 25px; */
+	vertical-align: center;
+	float: none;
 }
 
 .dark input[type=text]{
 	border:1px solid #2a2e31;
 	background-color:#2d3035;
 	color:#505358;
+}
+
+.searchoptions{
+	position: relative;
+	float: left;
+}
+
+.dark fieldset legend{
+	color: white;
+	font-weight: bold;
+}
+.dark fieldset{
+	color: DeepPink;
+	min-width: 65%;
+	height: 20%;
+}
+
+.smallersearchoptions{
+	height: 44%;
+}
+
+.hiddensearch{
+	display: none;
+}
+
+.optionslabel{
+	vertical-align: bottom;
+	font-size: 11pt;
+	color: cornflowerblue;
+}
+
+.showsearch{
+	display: inline;
 }
