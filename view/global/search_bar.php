@@ -11,7 +11,9 @@
 		<span>
 			<input type="text" class="search square" name="q" placeholder="Search..." />
 			<input class="searchbutton" type="submit" value="Search" />
-			<a class="optionslabel" onclick="document.getElementsByClassName('hiddensearch')[0].className = 'showsearch';">Options</a>
+			<a class="optionslabel" onclick="var obj = document.getElementsByClassName('hiddensearch');
+			if(obj.length > 0) obj[0].className ='showsearch'
+			else document.getElementsByClassName('showsearch')[0].className ='hiddensearch';">Options</a>
 		</span>
 		<div class="hiddensearch">
 			<div class="searchoptions" >
@@ -53,7 +55,7 @@
 						<option value="female">female</option>
 					</select>
 				</fieldset>			
-				<fieldset>
+				<fieldset class="pos_vert_bottom">
 					<legend>age</legend>
 					<select name="age">
 						<option value="None">Any</option>
