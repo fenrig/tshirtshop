@@ -142,6 +142,13 @@ class Controller{
 						$this->notFound();
 					}
 					break;
+				case "misc":
+					if(isset($post)){
+						getmisc($post);
+					}else{
+						$this->notFound();
+					}
+					break;
 				default:
 					$this->notFound();
 					break;

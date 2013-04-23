@@ -25,8 +25,18 @@ function fullnail($cid){
 
 function getcss($name){
 	if(file_exists('resources/css/' . $name)){
+		//header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + 216000));
 		echo file_get_contents('resources/css/' . $name);
 	}
 }
 
+function getmisc($name){
+	if(file_exists('resources/misc/' . $name)){
+		$list = explode(".",$name);
+		$file_extension = $list[1];
+		header('Content-Type: image/'.$file_extension);
+		header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + 216000));
+		echo file_get_contents('resources/misc/' . $name);
+	}
+}
 ?>

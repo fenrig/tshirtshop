@@ -3,16 +3,18 @@
 }
 
 .product-in-grid{
+	text-align: right;
 	width : 220;
 	height : 200;
 	position: relative;
 	float: left;
 	text-decoration : none;
+	margin: 20px 20px 0px 0px;
 }
 
 .price{
 	position: relative;
-	left: 90px;
+	/* left: 90px; */
 	bottom: 30px;
 	background: #ffa;
 	border-radius: 3px;
@@ -32,6 +34,7 @@
 }
 
 .price {
+	right: 5px;
 	color: black;
 	font-weight: bold;
 	font-size: 18pt;
