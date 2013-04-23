@@ -9,8 +9,12 @@ function SavePage() {
 	    currentPageUrl = this.href.toString().toLowerCase();
 	}
 	var date = new Date();
-   	date.setTime(date.getTime()+(30*1000));
-	document.cookie = cookieName+"="+escape(currentPageUrl)
+ 	data.setTime(date.getTime() + 5 * 60 * 1000) //Cookie experation data in 5 minutes
+   	document.cookie = cookieName+"="+escape(currentPageUrl)
 	 								 + ";expires="+date.toGMTString();
+	
+	//---------------New code------------
+	location.href="http://localhost:8081/login" 
+	//Link to login page currently this is http://localhost:8081/login
 	}
 </script>

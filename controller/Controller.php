@@ -165,6 +165,7 @@ class Controller{
 		if($credential_model->isAuthenticated()){
 			session_start();
 			$_SESSION["username"] = $_POST["user"];
+			$this->PageReturn();
 		}
 	}
 	
@@ -175,12 +176,23 @@ class Controller{
 				if(!isset($_SESSION))
 					session_start();
 				$_SESSION["username"] = $_POST["user"];
+				$this->PageReturn();
 			}
 		}
 	}
 
 	public function notFound() {
 		$this->view->page("404");
+	}
+
+	public function PageReturn() {
+		if (isset($_COOKIE["ReturnPage"])) {
+			header("Location: [url]".$_COOKIE["ReturnPage"]."[/url]");
+			setcookie("ReturnPage","",time() -3600);
+		}
+		else {
+			header("Location: [url]http://localhost:8081/[/url]");
+		}
 	}
 }
 
