@@ -23,12 +23,16 @@ function searchfilter_checkboxes(&$sql_string, $sql_col_string, $value_array, &$
 		$sql_string .= ' )';
 		$checkifconcatAND = TRUE;
 	}
-	
 }
 
 class Model{
-	public function getTshirt(&$tid){		
-		return new tshirt($tid);
+	public function getTshirt(&$tid){
+		$sql  = new dbconnection();
+		$result = $sql->query('SELECT * FROM `tshirt` inner join `clothings` on tshirt.cid = clothings.cid where tshirt.tid = '. $tid);
+		if(mysqli_num_rows($result) > 0){
+			return new tshirts_element(mysqli_fetch_array($result));
+		}
+		return NULL;	
 	}
 
 	public function getAuth(&$user,&$pass){

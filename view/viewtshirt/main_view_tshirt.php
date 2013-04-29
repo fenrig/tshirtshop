@@ -1,4 +1,5 @@
+
 <?php
 	global $tshirt;
-	echo '<h1>' . $tshirt->description . '</h1>';
 ?>
+<img class="fullnail" src="<?php echo 'http://' . $_SERVER['SERVER_ADDR'] . ':8081/thumbn/' . $tshirt['cid']; ?>" 
