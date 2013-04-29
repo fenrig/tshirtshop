@@ -70,7 +70,8 @@ class Controller{
 					break;
 				case "tshirts":
 					global $tshirts;
-					$size = 20;
+					global $count;
+					$size = 21;
 					if(isset($post)){
 						$pageno = intval($post);
 						$pageno--;

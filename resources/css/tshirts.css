@@ -15,6 +15,11 @@
 	margin: 20px 20px 0px 0px;
 }
 
+.product-in-grid img{
+	width : 220;
+	height : 200;
+}
+
 .price{
 	position: relative;
 	/* left: 90px; */
@@ -47,4 +52,8 @@
 .price .c {
 	font-size: 12pt;
 	vertical-align: text-top;
+}
+
+#pages{
+	clear: both;
 }

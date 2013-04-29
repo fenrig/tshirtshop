@@ -40,7 +40,7 @@ class Model{
 	}
 
 	public function getTshirts(&$number_of_page, &$size){
-		return new tshirts($number_of_page,$size,NULL);
+		return new tshirts($number_of_page,$size,NULL) ;
 	}
 
 	public function getSearch($general_term,$colors,$brands,$fabrics,$agegroup,$sex){

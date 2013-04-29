@@ -1,20 +1,22 @@
 <?php
 	# http://designshack.net/articles/css/verticalaccordionav/
 	include_once('includes/sql.php');
-	$this->sql = new dbconnection();
+	if( isset($this->sql) == false) $this->sql = new dbconnection();
 	$colors  = $this->sql->query("SELECT DISTINCT  `color` FROM  `clothings`");
 	$fabrics = $this->sql->query("SELECT DISTINCT  `fabric` FROM  `clothings`");
 	$brands = $this->sql->query("SELECT DISTINCT  `brand` FROM  `clothings`");
 ?>
 <div class="searchbar">
+	<div id="mainform">
 	<form action="search/" method="get">
 		<span>
-			<input type="text" class="search square" name="q" placeholder="Search..." />
+			<input type="text" id="searchbari" class="search square" name="q" placeholder="Search..." />
 			<input class="searchbutton" type="submit" value="Search" />
 			<a class="optionslabel" onclick="var obj = document.getElementsByClassName('hiddensearch');
 			if(obj.length > 0) obj[0].className ='showsearch'
 			else document.getElementsByClassName('showsearch')[0].className ='hiddensearch';">Options</a>
 		</span>
+	</div>
 		<div class="hiddensearch">
 			<div class="searchoptions" >
 				<fieldset>
@@ -69,4 +71,5 @@
 			</div>
 		</div>
 	</form>
+	<br />
 </div>

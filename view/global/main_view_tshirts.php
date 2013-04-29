@@ -3,7 +3,7 @@
 	?>
 
 	<div class="product-grid">
-
+	<div>
 	<?php
 	foreach ($tshirts as $tshirt){
 		?>
@@ -24,7 +24,18 @@
 		<?php
 	}
 	?>
-
+	</div>
+	<div id="pages">
+		<span>
+		<?php
+			global $count;
+			# var_dump($result);
+			foreach(range(0,($count[0] / 20),1) as $counter){
+				echo '<a href="#">' . $counter . '</a>';
+			}
+		?>
+		</span>
+	</div>
 	</div>
 
 	<?php

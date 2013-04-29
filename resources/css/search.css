@@ -1,5 +1,5 @@
 form{
-	width: 500px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -13,10 +13,14 @@ form{
 	color:#bcbcbc;
 }
 
+input[type=submit]{
+	width: 50px;
+}
+
 input[type=submit], input[type=submit]:hover {
 	height: 30px;
 	position:relative;
-	left:-10px;
+	float: left;
 	border:1px solid #adc5cf;
 	background: #e4f1f9; /* Old browsers */
 	background: -moz-linear-gradient(top, #e4f1f9 0%, #d5e7f3 100%); /* FF3.6+ */
@@ -31,7 +35,8 @@ input[type=submit], input[type=submit]:hover {
 }
 
 .searchbar {
-	width:100%;
+	width:80%;
+	/* min-width: 1000px; */
 	/* height:50px; */
 	/* padding:40px 25px; */
 	vertical-align: center;
@@ -42,12 +47,14 @@ input[type=submit], input[type=submit]:hover {
 	border:1px solid #2a2e31;
 	background-color:#2d3035;
 	color:#505358;
-	min-width: 70%;
+	/*min-width: 70%;*/
 }
 
 .searchoptions{
 	position: relative;
 	float: left;
+	min-width: 150px;
+	min-height: 200px;
 }
 
 .dark fieldset legend{
@@ -57,11 +64,18 @@ input[type=submit], input[type=submit]:hover {
 .dark fieldset{
 	color: DeepPink;
 	min-width: 65%;
-	height: 20%;
+	max-height: 50%;
+	min-height: 150px;
+}
+
+.smallersearchoptions fieldset{
+	min-height: 75px;
 }
 
 div.smallersearchoptions{
 	height: 19%;
+	min-height: 50px;
+	min-width: 100px;
 }
 
 .smallersearchoptions fieldset{
@@ -70,18 +84,35 @@ div.smallersearchoptions{
 
 .hiddensearch{
 	display: none;
+	clear: both;
 }
 
 .optionslabel{
 	vertical-align: bottom;
+	float: left;
+	height: 30px;
 	font-size: 11pt;
 	color: cornflowerblue;
 }
 
 .showsearch{
 	display: inline;
+	/*width: 2000px;*/
+
+	position: relative;
+	clear: both;
 }
 
 .pos_vert_bottom{
 	vertical-align: bottom;
+}
+
+.searchbar form input#searchbari {
+	width: 80%;
+	float: left;
+}
+
+#mainform {
+	width: 100%;
+	float: left;
 }

@@ -111,18 +111,22 @@ nav {
 /* !!!! */
 div#vertical_menu{
   position: relative;
+  /*left: 10px;*/
   float: left;
   height: 100%;
+
+  min-width: 200px;
 }
 
 div#main_content{
   position: relative;
   float: left;
+  width: 73%;
 }
 
 div#main_space{
   position: relative;
   float: left;
-  min-width: 2%;
+  width: 1%;
   min-height: 100%;
 }

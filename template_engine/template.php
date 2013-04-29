@@ -49,5 +49,4 @@ class template_engine{
 	}
 }
 
-
 ?>
