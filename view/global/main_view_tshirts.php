@@ -28,6 +28,10 @@
 	<div id="pages">
 		<span>
 		<?php
+			include_once('includes/sql.php');
+			if( isset($this->sql) == false){ $this->sql = new dbconnection(); }
+			$result = $this->sql->query("SELECT COUNT(*) as count FROM clothings");
+			$count = mysqli_fetch_array($result);
 			global $count;
 			# var_dump($result);
 			foreach(range(0,($count[0] / 20),1) as $counter){
