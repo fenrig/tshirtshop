@@ -6,3 +6,7 @@ tr > td:first-child {
 	 font-weight:bold; 
 }
 
+.fullnail {
+	width: 220px;
+	height: 220px;
+}

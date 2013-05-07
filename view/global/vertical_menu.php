@@ -1,4 +1,5 @@
 <div id="vertical_menu">
+  <script type="text/javascript" src="../misc/trolley.js"></script>
 <nav>
     <div class="menu-item alpha">
       <h4><a href="/">Home</a></h4>
@@ -24,11 +25,11 @@
     </div>
        
     <div class="menu-item">
-      <h4><a href="#">Contact</a></h4>
+      <h4><a href="#">Trolley</a></h4>
       <ul>
-        <li><a href="#">Phone</a></li>
-        <li><a href="#">Email</a></li>
-        <li><a href="#">Location</a></li>
+        <li><a id="price" href="#"></a></li>
+        <li><a id="quantity" href="#"></a></li>
+        <li><a id="checkout" href="#">checkout</a></li>
       </ul>
     </div>
 </nav>
