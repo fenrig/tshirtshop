@@ -49,7 +49,7 @@ function createCookie(cookie_name, cookie_value, exdays){
 }
 
 window.onload = function onpageload(){
-	createCookie("trolley", "2-1-14.00;3-1-15.00", 1);
+	//createCookie("trolley", "2-1-14.00;3-1-15.00", 1);
 	update_trolley();
 }
 

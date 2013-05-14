@@ -2,8 +2,8 @@
 	global $tshirt;
 ?>
 <img class="fullnail" src="<?php echo 'http://' . $_SERVER['SERVER_ADDR'] . ':8081/thumbn/' . $tshirt['cid']; ?>" </img> 
-<input name="quantity" type="number" value="0" min="1" max="32000"/>
-<button onclick="JavaScript:alert('Added to your shopping cart')">Add</button>
+<input id="amount" type="number" value="0" min="1" max="32000"/>
+<button onClick="Add_To_Cart(<?php echo $tshirt['cid'] ?>,<?php echo $tshirt['price'] ?>)">Add</button>
 <div>
 		<h4>specs</h4>
 		<hr>
@@ -37,3 +37,26 @@
 		</tr>
 		</table>
 </div>
+<script type="text/javascript">
+	function Add_To_Cart(cid,price) {
+		// cookie: "<cid>-<#>-<priceper>;..."
+		if (document.getElementById('amount').value != 0) {
+			var CookieValue="";
+			var exdays=1;
+			var exdate = new Date();
+			exdate.setDate(exdate.getDate() + exdays);
+			if(document.cookie.indexOf("trolley") >= 0){ // cookie bestaat
+				var cookie = getCookie("trolley");
+			}
+			value = cookie + ";"+ cid + "-" + document.getElementById('amount').value + "-" + price;
+			value = escape(value) +  "; expires="+exdate.toUTCString();
+			document.cookie = "trolley =" + value;
+			alert("Your Tshirt has been added to your shopping cart");
+		}
+		else {
+			alert("Your Tshirt is NOT added to your shopping cart");
+		}
+			
+
+	}
+</script>

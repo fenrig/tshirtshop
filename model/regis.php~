@@ -12,15 +12,12 @@ class reg_user{
 	}
 
 	public function register($user,$pass1,$pass2){
-		echo "tette";		
-		if (strcmp($pass1,$pass2) == 0 ) {
-			echo "tette";	 		
+		if (strcmp($pass1,$pass2) == 0 ) {	
 			include_once("includes/Salt.php");
 			$result = 
 			$this->sql->query("INSERT INTO `users` (`uid`,`username`, `password`) VALUES ('NULL','" .$user."','".md5($salt[rand(0, 2)].$pass1)."');");
 			$this->reg = $result;
 			echo $result;
-			echo "tette";	
 			return $this->reg;
 		}
 	}
