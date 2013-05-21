@@ -15,7 +15,9 @@ class dbconnection{
 	}
 
 	public function query($sql_command){
-		return mysqli_query($this->connection,$sql_command);
+		$result = mysqli_query($this->connection,$sql_command);
+		if($result === False) echo mysqli_error($this->connection);
+		return $result;
 	}
 
 }

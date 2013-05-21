@@ -22,6 +22,7 @@ function curPageURL() {
 echo curPageURL();
 */
 
+if(session_id() == '') session_start();
 
 class Controller{
 	private $model;
@@ -59,6 +60,8 @@ class Controller{
 				case "login":
 					$this->view->page('login');
 					break;
+				case "logout":
+					$this->logout();
 				case "auth":
 					$this->authenticate();
 					break;
@@ -163,10 +166,13 @@ class Controller{
 	public function authenticate(){
 		if(isset($_POST["user"]) && isset($_POST["password"]))
 			$credential_model = $this->model->getAuth($_POST["user"],$_POST["password"]);
+			echo $credential_model->isAuthenticated();
 		if($credential_model->isAuthenticated()){
 			session_start();
 			$_SESSION["username"] = $_POST["user"];
 			$this->PageReturn();
+		}else{
+			//$this->PageReturn();
 		}
 	}
 	
@@ -188,12 +194,17 @@ class Controller{
 
 	public function PageReturn() {
 		if (isset($_COOKIE["ReturnPage"])) {
-			header("Location: [url]".$_COOKIE["ReturnPage"]."[/url]");
+			header("Location: ".$_COOKIE["ReturnPage"]);
 			setcookie("ReturnPage","",time() -3600);
 		}
 		else {
-			header("Location: [url]http://localhost:8081/[/url]");
+			header("Location: http://localhost:8081/");
 		}
+	}
+
+	public function logout(){
+		session_destroy();
+		$this->PageReturn();
 	}
 }
 

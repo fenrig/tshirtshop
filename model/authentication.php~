@@ -13,13 +13,8 @@ class auth_user{
 
 	public function authenticate($user,$pass){
 	include_once("includes/Salt.php");
-	$user = mysql_real_escape_string($user);
-	$pass = mysql_real_escape_string($pass);
-
-		foreach ($salt as &$value) {	
-				
-			$result = $this->sql->query("SELECT * FROM users WHERE username='" . $user . "' and password='" . md5($value.$pass) ."';");
-			if($result === False) continue;
+		foreach ($salt as &$value) {		
+			$result = $this->sql->query("SELECT * FROM users WHERE username='" . $user . "' and password='" . md5($value.$pass) ."');");
 			if(mysqli_num_rows($result) == 1) {
 				$this->auth = TRUE;				
 				return $this->auth;			

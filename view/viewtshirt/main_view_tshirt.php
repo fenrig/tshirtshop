@@ -37,26 +37,3 @@
 		</tr>
 		</table>
 </div>
-<script type="text/javascript">
-	function Add_To_Cart(cid,price) {
-		// cookie: "<cid>-<#>-<priceper>;..."
-		if (document.getElementById('amount').value != 0) {
-			var CookieValue="";
-			var exdays=1;
-			var exdate = new Date();
-			exdate.setDate(exdate.getDate() + exdays);
-			if(document.cookie.indexOf("trolley") >= 0){ // cookie bestaat
-				var cookie = getCookie("trolley");
-			}
-			value = cookie + ";"+ cid + "-" + document.getElementById('amount').value + "-" + price;
-			value = escape(value) +  "; expires="+exdate.toUTCString();
-			document.cookie = "trolley =" + value;
-			alert("Your Tshirt has been added to your shopping cart");
-		}
-		else {
-			alert("Your Tshirt is NOT added to your shopping cart");
-		}
-			
-
-	}
-</script>
