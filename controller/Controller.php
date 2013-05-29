@@ -60,6 +60,9 @@ class Controller{
 				case "login":
 					$this->view->page('login');
 					break;
+				case "checkout":
+					$this->view->page('checkout');
+					break;
 				case "logout":
 					$this->logout();
 				case "auth":
