@@ -35,5 +35,19 @@
         <li><a id="checkout" href="#">checkout</a></li>
       </ul>
     </div>
+<?php
+  if(isset($_SESSION["storeManager"]) AND $_SESSION["storeManager"] == TRUE){
+?>
+    <div class="menu-item">
+      <h4><a href="#">Store Manager</a></h4>
+      <ul>
+        <li><a href="newTshirt">New Tshirt</a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+      </ul>
+    </div>
+<?php
+  }
+?>
 </nav>
 </div>

@@ -13,4 +13,34 @@
 		<template>main_view_checkout</template>
 	</div>
 </body>
+<script>
+function DeleteOrder(number) {
+	if(document.cookie.indexOf("trolley") >= 0){
+		var cookie = getCookie("trolley");
+		if(cookie != "Null"){
+			big = cookie.split(";");
+			var length = big.length, element = null;
+			var total = 0, aantal = 0;
+			for(var i = 0; i < length; i++){
+				if (i != number) {
+					value = big[i] + ";" ;	
+				}
+			}
+			if (length == 1) {
+				document.cookie = "trolley" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';		
+				
+			}
+			else {
+				var exdays=1;
+				var exdate = new Date();
+				exdate.setDate(exdate.getDate() + exdays);
+				value = value + "; expires="+exdate.toUTCString() + "; path=/";
+				document.cookie = "trolley =" + value;
+			}
+			document.location.reload(true);
+		}
+		
+	}
+}
+</script>
 </html>

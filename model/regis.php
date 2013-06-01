@@ -14,8 +14,7 @@ class reg_user{
 	public function register($user,$pass1,$pass2){	
 		if (strcmp($pass1,$pass2) == 0 ) {
 			include_once("includes/Salt.php");
-			$result = 
-			$this->sql->query("INSERT INTO `users` (`uid`,`username`, `password`) VALUES ('NULL','" .$user."','".md5($salt[rand(0, 2)].$pass1)."');");
+			$result = $this->sql->query("INSERT INTO `users` (`uid`,`username`, `password`, `manager`) VALUES ('NULL','" .$user."','".md5($salt[rand(0, 2)].$pass1)."', '0');");
 			$this->reg = $result;	
 			return $this->reg;
 		}

@@ -1,9 +1,9 @@
 <?php
-
+ 
 include_once("model/Model.php");
 include_once("template_engine/template.php");
 include_once("resources/resource_loader.php");
-
+ 
 /*
 // -------------
 function curPageURL() {
@@ -18,21 +18,21 @@ function curPageURL() {
  return $pageURL;
 }
 // --------------
-
+ 
 echo curPageURL();
 */
-
+ 
 if(session_id() == '') session_start();
-
+ 
 class Controller{
 	private $model;
 	private $view;
-
+ 
 	public function __construct(){
 		$this->model = new Model();
 		$this->view = new template_engine();
 	}
-
+ 
 	public function invoke(){
 		// ADDRESS RESOLUTION
 		$uri = explode('/', $_SERVER['REQUEST_URI']);
@@ -60,8 +60,35 @@ class Controller{
 				case "login":
 					$this->view->page('login');
 					break;
+				case "newTshirt":
+					if(isset($_SESSION["storeManager"]) AND $_SESSION["storeManager"] == TRUE)
+						$this->view->page('newTshirt');
+					else 
+						$this->view->page('noPermission');
+					break;
 				case "checkout":
-					$this->view->page('checkout');
+					global $Orders;
+					if (isset($_COOKIE["trolley"])) {
+						$troll = $_COOKIE["trolley"];
+						$pieces = explode(';',$troll);
+						foreach ($pieces as $piece) {
+							$lpiece = explode('-',$piece);
+							$tshirt = $this->model->getOrder($lpiece[0]);
+							if (! $tshirt == NULL) {
+								$Orders[] = $tshirt;
+							}
+							else {
+								$this->notFound();
+								break;
+							}
+						}
+						if (! $Orders == NULL) {
+							$this->view->page('checkout');
+						}
+						else{
+							$this->notFound();
+						}
+					}
 					break;
 				case "logout":
 					$this->logout();
@@ -165,17 +192,21 @@ class Controller{
 		}
 		echo $this->view->output();
 	}
-
+ 
 	public function authenticate(){
 		if(isset($_POST["user"]) && isset($_POST["password"]))
 			$credential_model = $this->model->getAuth($_POST["user"],$_POST["password"]);
 			echo $credential_model->isAuthenticated();
 		if($credential_model->isAuthenticated()){
-			session_start();
+			if(!isset($_SESSION))
+				session_start();
 			$_SESSION["username"] = $_POST["user"];
+			if($credential_model->isStoreManager()){
+				$_SESSION["storeManager"] = TRUE;
+			}
 			$this->PageReturn();
 		}else{
-			//$this->PageReturn();
+			$this->PageReturn();
 		}
 	}
 	
@@ -190,11 +221,11 @@ class Controller{
 			}
 		}
 	}
-
+ 
 	public function notFound() {
 		$this->view->page("404");
 	}
-
+ 
 	public function PageReturn() {
 		if (isset($_COOKIE["ReturnPage"])) {
 			header("Location: ".$_COOKIE["ReturnPage"]);
@@ -204,11 +235,11 @@ class Controller{
 			header("Location: http://localhost:8081/");
 		}
 	}
-
+ 
 	public function logout(){
 		session_destroy();
 		$this->PageReturn();
 	}
 }
-
+ 
 ?>
