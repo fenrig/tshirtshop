@@ -14,7 +14,7 @@
 			echo "<tr>";
 			echo "<td>";
 			echo "<a href=/tshirt/";
-			echo $Orders[$counter]['tid'];
+			echo $lpiece[0];
 			echo ">";
 			echo $Orders[$counter]['description'];
 			echo "</a>";
