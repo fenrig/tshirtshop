@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 27 mrt 2013 om 18:01
+-- Genereertijd: 20 apr 2013 om 16:24
 -- Serverversie: 5.5.27
 -- PHP-versie: 5.4.7
 
@@ -23,6 +23,55 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `clothings`
+--
+
+CREATE TABLE IF NOT EXISTS `clothings` (
+  `cid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `price` float NOT NULL,
+  `color` text NOT NULL,
+  `brand` text NOT NULL,
+  `agegroup` enum('baby','child','teenager','adult','maternity') NOT NULL,
+  `sex` enum('unisex','female','male') NOT NULL,
+  `fabric` varchar(256) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `clothings`
+--
+
+INSERT INTO `clothings` (`cid`, `price`, `color`, `brand`, `agegroup`, `sex`, `fabric`, `description`) VALUES
+(1, 19, 'blue', 'lendesigns', 'adult', 'unisex', 'cotton', 'A nice blue shirt by lendesigns, both for adults and teens'),
+(2, 15, 'green', 'DarkyShirts (r)', 'maternity', 'female', 'rune cloth', 'Darky maternitity clothing out of rune cloth');
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `tshirt`
+--
+
+CREATE TABLE IF NOT EXISTS `tshirt` (
+  `tid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cid` bigint(20) NOT NULL,
+  `format` text NOT NULL,
+  `sleeves` text NOT NULL,
+  PRIMARY KEY (`tid`),
+  UNIQUE KEY `cid` (`cid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `tshirt`
+--
+
+INSERT INTO `tshirt` (`tid`, `cid`, `format`, `sleeves`) VALUES
+(2, 1, 'normal', 'long'),
+(3, 2, 'Real sexy', 'no sleeves');
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `users`
 --
 
@@ -32,14 +81,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` text NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `users`
 --
 
 INSERT INTO `users` (`uid`, `username`, `password`) VALUES
-(1, 'fenrig', '2cf1e6c989259bd7e380f061031498c2');
+(2, 'darquennes.dries@gmail.com', '6d99f86681056fb1591de66c7a2ca2b0');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

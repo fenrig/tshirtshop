@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 29 apr 2013 om 11:28
+-- Genereertijd: 01 jun 2013 om 18:20
 -- Serverversie: 5.5.27
 -- PHP-versie: 5.4.7
 
@@ -117,16 +117,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(256) NOT NULL,
   `password` text NOT NULL,
+  `manager` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `users`
 --
 
-INSERT INTO `users` (`uid`, `username`, `password`) VALUES
-(2, 'darquennes.dries@gmail.com', '6d99f86681056fb1591de66c7a2ca2b0');
+INSERT INTO `users` (`uid`, `username`, `password`, `manager`) VALUES
+(2, 'darquennes.dries@gmail.com', '6d99f86681056fb1591de66c7a2ca2b0', 0),
+(3, 'matthias.v.gestel@gmail.com', '2db7b94de7c55574ff9d83217595b003', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

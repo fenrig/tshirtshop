@@ -17,7 +17,7 @@ input[type=submit]{
 	width: 50px;
 }
 
-input[type=submit], input[type=submit]:hover {
+input[type=submit], input[type=submit]:hover{
 	height: 30px;
 	position:relative;
 	float: left;
@@ -34,6 +34,8 @@ input[type=submit], input[type=submit]:hover {
 	cursor: pointer;
 }
 
+
+
 .searchbar {
 	width:80%;
 	/* min-width: 1000px; */
@@ -44,6 +46,13 @@ input[type=submit], input[type=submit]:hover {
 }
 
 .dark input[type=text]{
+	border:1px solid #2a2e31;
+	background-color:#2d3035;
+	color:#505358;
+	/*min-width: 70%;*/
+}
+
+.dark .input{
 	border:1px solid #2a2e31;
 	background-color:#2d3035;
 	color:#505358;
@@ -115,4 +124,9 @@ div.smallersearchoptions{
 #mainform {
 	width: 100%;
 	float: left;
+}
+
+.label{
+	text-align: right;
+	vertical-align:text-top;
 }
