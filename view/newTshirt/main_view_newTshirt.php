@@ -34,7 +34,7 @@
 			</td>
 			<td>
 				<input onChange="updateLabel()" type="color" name="colorHex" class="input" />
-				<input required type="text" list="colorx" id="color" value="black"></input>
+				<input required type="text" name="color" list="colorx" id="color" value="black"></input>
 				<datalist id="colorx">
 <?php
 while($color = mysqli_fetch_array($colors)){
@@ -49,7 +49,7 @@ while($color = mysqli_fetch_array($colors)){
 				Brand:
 			</td>
 			<td>
-				<input required type="text" list="brand" class="input">
+				<input required type="text" name="brand" list="brand" class="input">
 				<datalist id="brand">
 <?php
 while($brand = mysqli_fetch_array($brands)){
@@ -90,7 +90,7 @@ while($brand = mysqli_fetch_array($brands)){
 				Fabric:
 			</td>
 			<td>
-				<input required type="text" list="fabric" class="input">
+				<input required type="text" name="fabric" list="fabric" class="input">
 				<datalist id="fabric">
 <?php
 while($fabric = mysqli_fetch_array($fabrics)){
@@ -105,7 +105,7 @@ while($fabric = mysqli_fetch_array($fabrics)){
 				Description:
 			</td>
 			<td>
-				<textarea rows="4" cols="50" maxlength="255" class="input"></textarea>
+				<textarea name="description" rows="4" cols="50" maxlength="255" class="input"></textarea>
 			</td>
 		</tr>
 		<tr>
@@ -113,7 +113,7 @@ while($fabric = mysqli_fetch_array($fabrics)){
 				Format:
 			</td>
 			<td>
-				<input required type="text" list="format" class="input">
+				<input required name="format" type="text" list="format" class="input">
 				<datalist id="format">
 <?php
 while($format = mysqli_fetch_array($formats)){
@@ -128,7 +128,7 @@ while($format = mysqli_fetch_array($formats)){
 				Sleeves:
 			</td>
 			<td>
-				<input required type="text" list="sleeves" class="input">
+				<input required type="text" name="sleeves" list="sleeves" class="input">
 				<datalist id="sleeves">
 <?php
 while($sleeve = mysqli_fetch_array($sleeves)){

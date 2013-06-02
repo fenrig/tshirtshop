@@ -48,14 +48,15 @@ input[type=submit], input[type=submit]:hover{
 .dark input[type=text]{
 	border:1px solid #2a2e31;
 	background-color:#2d3035;
-	color:#505358;
+	/* color:#505358; */
+	color: white;
 	/*min-width: 70%;*/
 }
 
 .dark .input{
 	border:1px solid #2a2e31;
 	background-color:#2d3035;
-	color:#505358;
+	color: white;
 	/*min-width: 70%;*/
 }
 

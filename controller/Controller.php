@@ -66,6 +66,68 @@ class Controller{
 					else 
 						$this->view->page('noPermission');
 					break;
+				case "addTshirt":
+					if(isset($_POST) and count($_POST) == 11 and isset($_POST["price"])){
+						$correct = TRUE;
+						
+						$price = mysql_real_escape_string($_POST['price']);
+						if(((intval($price) * 100) % 1) != 0) $correct = FALSE;
+						if(! (isset($_POST['color']) AND isset($_POST['brand']) AND isset($_POST['agegroup']) AND isset($_POST['sex']) AND isset($_POST['fabric']) AND isset($_POST['description']) AND isset($_POST['format']) AND isset($_POST['sleeves'])))
+							$correct = FALSE;
+						if($correct){
+							$color = mysql_real_escape_string($_POST['color']);
+							$brand = mysql_real_escape_string($_POST['brand']);
+							$agegroup = mysql_real_escape_string($_POST['agegroup']);
+							$sex = mysql_real_escape_string($_POST['sex']);
+							$fabric = mysql_real_escape_string($_POST['fabric']);
+							$description = mysql_real_escape_string($_POST['description']);
+							$format = mysql_real_escape_string($_POST['format']);
+							$sleeves = mysql_real_escape_string($_POST['sleeves']);
+
+							$cid = $this->model->addTshirt($price, $color, $brand, $agegroup, $sex, $fabric, $description, $format, $sleeves);
+							switch($_FILES['fullnail']['type']){
+								case "image/gif":
+									$backfull = ".gif";
+									break;
+								case "image/jpg":
+								case "image/jpeg":
+									$backfull = ".jpeg";
+									break;
+								case "image/png":
+									$backfull = ".png";
+									break;
+								case "image/svg":
+									$backfull = ".svg";
+									break;
+								default:
+									$backfull = ".jpg";
+									break;
+							}
+							switch($_FILES['thumbnail']['type']){
+								case "image/gif":
+									$backthumb = ".gif";
+									break;
+								case "image/jpg":
+								case "image/jpeg":
+									$backthumb = ".jpeg";
+									break;
+								case "image/png":
+									$backthumb = ".png";
+									break;
+								case "image/svg":
+									$backthumb = ".svg";
+									break;
+								default:
+									$backthumb = ".jpg";
+									break;
+							}
+							echo realpath( "../resources/fullnails/" );
+							if (move_uploaded_file($_FILES['fullnail']['tmp_name'], "resources/fullnails/$cid$backfull"));
+							if (move_uploaded_file($_FILES['thumbnail']['tmp_name'], "resources/thumbnails/$cid$backthumb"));
+							$this->view->page('newTshirt');
+							break;
+						}
+					}
 				case "checkout":
 					global $Orders;
 					if (isset($_COOKIE["trolley"])) {
@@ -188,9 +250,14 @@ class Controller{
 					break;
 			}
 		}else{
-			$this->view->page('home');
+			header('Location: /tshirts');
 		}
 		echo $this->view->output();
+	}
+
+	public function addTshirt(){
+		$addsucceeded = $this->model->addTshirt();
+		$this->PageReturn();
 	}
  
 	public function authenticate(){
@@ -229,7 +296,7 @@ class Controller{
 	public function PageReturn() {
 		if (isset($_COOKIE["ReturnPage"])) {
 			header("Location: ".$_COOKIE["ReturnPage"]);
-			setcookie("ReturnPage","",time() -3600);
+			setcookie("ReturnPage","",time() - 3600);
 		}
 		else {
 			header("Location: http://localhost:8081/");

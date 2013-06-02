@@ -26,6 +26,15 @@ function searchfilter_checkboxes(&$sql_string, $sql_col_string, $value_array, &$
 }
  
 class Model{
+	public function addTshirt(&$price, &$color, &$brand, &$agegroup, &$sex, &$fabric, &$description, &$format, &$sleeves){
+		$sql = new dbconnection();
+		$result = $sql->query("INSERT INTO `clothings`(`cid`, `price`, `color`, `brand`, `agegroup`, `sex`, `fabric`, `description`) VALUES (NULL, '$price', '$color', '$brand', '$agegroup', '$sex', '$fabric', '$description')");
+		$result = $sql->query("SELECT `cid` FROM `clothings` WHERE `description` = '$description' AND `color` = '$color' AND `brand` = '$brand' AND `agegroup` = '$agegroup'  AND `sex` = '$sex' AND `fabric` = '$fabric'");
+		$row = mysqli_fetch_row($result);
+		$result = $sql->query("INSERT INTO `tshirt`(`tid`, `cid`, `format`, `sleeves`) VALUES (NULL, '$row[0]', '$format', '$sleeves')");
+		return $row[0];
+	}
+
 	public function getTshirt(&$tid){
 		$sql  = new dbconnection();
 		$result = $sql->query('SELECT * FROM `tshirt` inner join `clothings` on tshirt.cid = clothings.cid where tshirt.tid = '. $tid);
