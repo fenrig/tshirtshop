@@ -1,0 +1,24 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/tshirts.css">
+	<link rel="stylesheet" type="text/css" href="/css/search.css">
+	<link rel="stylesheet" type="text/css" href="/css/general.css">
+	<link rel="stylesheet" type="text/css" href="/css/vertical_menu.css">
+</head>
+<body class="dark">
+	<template>vertical_menu</template>
+	<div id="main_space"> </div>
+	<div id="main_content">
+		<template>PageCookie</template>
+		<template>main_view_purchase</template>
+	</div>
+</body>
+<script>
+function ConfirmPurchase(AID) {
+	alert(AID);
+	HiddenAID.value = AID;
+	document.buynow.submit();
+}
+
+</script>
+</html>

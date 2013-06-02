@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 02 jun 2013 om 16:54
+-- Genereertijd: 01 jun 2013 om 18:20
 -- Serverversie: 5.5.27
 -- PHP-versie: 5.4.7
 
@@ -19,25 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Databank: `teeshirt`
 --
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `Addresses`
---
-
-CREATE TABLE IF NOT EXISTS `Addresses` (
-  `AID` int(11) NOT NULL AUTO_INCREMENT,
-  `Country` text NOT NULL,
-  `Province` text NOT NULL,
-  `City` text NOT NULL,
-  `Street` text NOT NULL,
-  `Number` int(11) NOT NULL,
-  `Extra` text NOT NULL,
-  `UID` int(11) NOT NULL,
-  PRIMARY KEY (`AID`),
-  UNIQUE KEY `AID` (`AID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -83,21 +64,6 @@ INSERT INTO `clothings` (`cid`, `price`, `color`, `brand`, `agegroup`, `sex`, `f
 (19, 17.25, 'blue', 'lendesigns', 'adult', 'unisex', 'cotton', 'Trust me I''m a doctor'),
 (20, 27.25, 'grey', 'lendesigns', 'adult', 'unisex', 'cotton', 'Skyrim'),
 (21, 3.33, 'Black', 'lendesigns', 'teenager', 'female', 'cotton', 'That''s what she said');
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `Orders`
---
-
-CREATE TABLE IF NOT EXISTS `Orders` (
-  `OID` int(11) NOT NULL AUTO_INCREMENT,
-  `AID` int(11) NOT NULL,
-  `Order` text NOT NULL,
-  `Status` int(11) NOT NULL,
-  PRIMARY KEY (`OID`),
-  UNIQUE KEY `OID` (`OID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -154,15 +120,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `manager` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `users`
 --
 
 INSERT INTO `users` (`uid`, `username`, `password`, `manager`) VALUES
-(3, 'matthias.v.gestel@gmail.com', '2db7b94de7c55574ff9d83217595b003', 0),
-(4, 'darquennes.dries@gmail.com', '5b6586c9f760cedd413b8a3e42d55fb6', 0);
+(2, 'darquennes.dries@gmail.com', '6d99f86681056fb1591de66c7a2ca2b0', 0),
+(3, 'matthias.v.gestel@gmail.com', '2db7b94de7c55574ff9d83217595b003', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

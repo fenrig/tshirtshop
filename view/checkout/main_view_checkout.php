@@ -23,7 +23,7 @@
 			echo "</tr>";		
 			$counter++;
 		}
-		echo "<button type='button'>Confirm Orders!</button>";
+		echo "<a id='Purchase' href='/purchase'>Confirm Order</a>";
 	}
 	else {
 		echo "U don't have any items in your trolley yet";

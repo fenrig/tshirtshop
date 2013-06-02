@@ -32,7 +32,7 @@
       <ul>
         <li><a id="price" href="#"></a></li>
         <li><a id="quantity" href="#"></a></li>
-        <li><a id="checkout" href="checkout">checkout</a></li>
+        <li><a id="checkout" href="/checkout">checkout</a></li>
       </ul>
     </div>
 <?php

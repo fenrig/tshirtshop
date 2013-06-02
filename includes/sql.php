@@ -19,6 +19,9 @@ class dbconnection{
 		if($result === False) echo mysqli_error($this->connection);
 		return $result;
 	}
+	public function getLastID() {
+		return mysqli_insert_id($this->connection);
+	}
 
 }
 

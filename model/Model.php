@@ -43,8 +43,7 @@ class Model{
 		}
 		return NULL;	
 	}
-
-	public function getOrder(&$cid){
+public function getOrder(&$cid){
 		$sql  = new dbconnection();
 		$result = $sql->query('SELECT * FROM `tshirt` inner join `clothings` on tshirt.cid = clothings.cid where tshirt.cid = '. $cid);
 		if(mysqli_num_rows($result) > 0){
@@ -52,7 +51,44 @@ class Model{
 		}
 		return NULL;	
 	}
- 
+	public function getUID(&$username) {
+ 		$sql  = new dbconnection();
+		$result = $sql->query('SELECT uid FROM `users` where username like \'' . $username . '\'');
+		if(mysqli_num_rows($result) ==  1){
+			$tmp = mysqli_fetch_array($result);
+			return $tmp['uid'];
+		}
+		return NULL;	
+ 	}
+ 	public function getAddresses(&$UID) {
+ 		$sql  = new dbconnection();
+		$result = $sql->query('SELECT * FROM `Addresses` where `uid` = '. $UID);
+		if(mysqli_num_rows($result) > 0){
+			return $result;
+		}
+		return NULL;	
+ 	}
+ 	public function addNewAddress(&$country,&$province,&$city,&$street,&$number,&$extra) {
+ 		if(isset($_SESSION['username'])) {
+			$UID = $this->getUID($_SESSION['username']);
+		}
+ 		$sql  = new dbconnection();
+ 		$result = $sql->query("INSERT INTO `Addresses` (`AID`,`country`,`province`, `city`, `street`, `number`, `extra`, `UID`) VALUES ('NULL','" .$country."','". $province ."','" .$city."','" .$street."','" .$number."','" .$extra."','" .$UID."');");
+		if ($result) {
+			return $sql->getLastID();
+		}
+		else {
+			return NULL;
+		}
+ 	}
+ 	public function addOrder(&$AID) {
+		if (isset($_COOKIE["trolley"])) {
+			$troll = $_COOKIE['trolley'];
+			$sql  = new dbconnection();
+			$result = $sql->query("INSERT INTO `Orders` (`OID`,`AID`,`Order`,`Status`) VALUES ('NULL','". $AID ."','". $troll ."','0');");
+ 			return $result;
+ 		}
+ 	}
 	public function getAuth(&$user,&$pass){
 		return new auth_user($user,$pass);
 	}

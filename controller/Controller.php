@@ -127,6 +127,21 @@ class Controller{
 							$this->view->page('newTshirt');
 							break;
 						}
+					}case "purchase":
+					global $Addresses;
+					global $UID;
+					if(isset($_SESSION['username'])) {
+						$UID = $this->model->getUID($_SESSION['username']);
+						$Addresses = $this->model->getAddresses($UID);
+					}
+					$this->view->page('purchase');
+					break;
+				case "newaddresspurchase":
+					$this->addAddress();
+					break;
+				case "addresspurchase":
+					if ($this->model->addOrder($_POST["AID"])) {
+						$this->view->page('home');
 					}
 				case "checkout":
 					global $Orders;
@@ -144,14 +159,15 @@ class Controller{
 								break;
 							}
 						}
-						if (! $Orders == NULL) {
-							$this->view->page('checkout');
-						}
-						else{
+						if ($Orders == NULL) {
 							$this->notFound();
+							break;
 						}
+
 					}
+					$this->view->page('checkout');	
 					break;
+				
 				case "logout":
 					$this->logout();
 				case "auth":
@@ -297,7 +313,23 @@ class Controller{
 			}
 		}
 	}
- 
+ 	public function addAddress() {
+ 		if(!empty($_POST["country"]) && !empty($_POST["province"]) && !empty($_POST["city"]) && !empty($_POST["street"]) && !empty($_POST["number"])) {
+ 			if (!empty($_POST["extra"])) {
+ 				$AID=$this->model->addNewAddress($_POST["country"],$_POST["province"],$_POST["city"],$_POST["street"],$_POST["number"],$_POST["extra"]);
+ 			}
+ 			else {
+ 				$Nan = "NaN";
+ 				$AID=$this->model->addNewAddress($_POST["country"],$_POST["province"],$_POST["city"],$_POST["street"],$_POST["number"],$Nan);
+ 			}
+ 			if ($AID != NULL) {
+ 				$check = $this->model->addOrder($AID);
+ 				if($check) {
+ 					$this->view->page('home');
+ 				}
+ 			}
+ 		}
+ 	}
 	public function notFound() {
 		$this->view->page("404");
 	}
