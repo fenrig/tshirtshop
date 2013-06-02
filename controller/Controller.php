@@ -245,6 +245,15 @@ class Controller{
 						$this->notFound();
 					}
 					break;
+				case "upgradeUser":
+					$this->view->page("upgradeUser");
+					break;
+				case "upgradeuserx":
+					if(isset($_POST['user'])){
+						$this->model->upgradeUser(mysql_real_escape_string($_POST['user']));
+						header('Location: /upgradeUser');
+						break;
+					}
 				default:
 					$this->notFound();
 					break;

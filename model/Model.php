@@ -97,6 +97,12 @@ class Model{
 		$result = $sql->query($sql_string);
 		return new tshirts(NULL,NULL,$result);
 	}
+
+	public function upgradeUser($username){
+		$sql  = new dbconnection();
+		$result = $sql->query("UPDATE `users` SET manager='1' WHERE username = '$username'");
+		return $result;
+	}
 }
  
 ?>

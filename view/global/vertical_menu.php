@@ -42,7 +42,7 @@
       <h4><a href="#">Store Manager</a></h4>
       <ul>
         <li><a href="newTshirt">New Tshirt</a></li>
-        <li><a href="#"></a></li>
+        <li><a href="upgradeUser">Upgrade</a></li>
         <li><a href="#"></a></li>
       </ul>
     </div>
