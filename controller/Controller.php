@@ -141,7 +141,11 @@ class Controller{
 					break;
 				case "addresspurchase":
 					if ($this->model->addOrder($_POST["AID"])) {
-						$this->view->page('home');
+						setcookie("trolley","",time()-3600);
+						$this->view->page('roundup');
+					}
+					else {
+						$this->view->page('roundof');
 					}
 				case "checkout":
 					global $Orders;
@@ -325,8 +329,12 @@ class Controller{
  			if ($AID != NULL) {
  				$check = $this->model->addOrder($AID);
  				if($check) {
- 					$this->view->page('home');
- 				}
+ 					setcookie("trolley","",time()-3600);
+ 					$this->view->page('roundup');
+					}
+				else {
+					$this->view->page('roundof');
+				}
  			}
  		}
  	}
