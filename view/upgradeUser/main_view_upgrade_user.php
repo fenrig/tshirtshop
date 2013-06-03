@@ -6,14 +6,14 @@
 	<table>
 		<tr>
 			<td>
-				<input required type="text" name="user" list="users" class="input">
-				<datalist id="users">
+				<select name="user">
 				<?php
 				while($user = mysqli_fetch_array($users)){
-					echo '<option value="' . $user[0] . '" />';
+					echo '<option value="' . $user[0] . '" />' . $user[0] . '</option>';
 				}
 				?>
-				</datalist>
+				</select>
+				
 			</td>
 			<td>
 				<input type="submit" text="Upgrade!" >
