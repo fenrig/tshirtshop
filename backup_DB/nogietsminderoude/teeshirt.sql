@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 03 jun 2013 om 15:56
+-- Genereertijd: 02 jun 2013 om 16:54
 -- Serverversie: 5.5.27
 -- PHP-versie: 5.4.7
 
@@ -37,16 +37,7 @@ CREATE TABLE IF NOT EXISTS `Addresses` (
   `UID` int(11) NOT NULL,
   PRIMARY KEY (`AID`),
   UNIQUE KEY `AID` (`AID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Gegevens worden uitgevoerd voor tabel `Addresses`
---
-
-INSERT INTO `Addresses` (`AID`, `Country`, `Province`, `City`, `Street`, `Number`, `Extra`, `UID`) VALUES
-(1, 'Belgium', 'Antwerp', 'Waver', 'Schranslei', 21, 'I love pussy', 5),
-(2, 'Belgium', 'Antwerp', 'Mechelen', 'Schrans', 22, 'oei', 5),
-(3, 'Belgium', 'Antwerp', 'Mechelen', 'Schrans', 22, 'oei', 5);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -64,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `clothings` (
   `fabric` varchar(256) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `clothings`
@@ -91,9 +82,7 @@ INSERT INTO `clothings` (`cid`, `price`, `color`, `brand`, `agegroup`, `sex`, `f
 (18, 15, 'green', 'lendesigns', 'adult', 'unisex', 'cotton', 'Hadouken'),
 (19, 17.25, 'blue', 'lendesigns', 'adult', 'unisex', 'cotton', 'Trust me I''m a doctor'),
 (20, 27.25, 'grey', 'lendesigns', 'adult', 'unisex', 'cotton', 'Skyrim'),
-(21, 3.33, 'Black', 'lendesigns', 'teenager', 'female', 'cotton', 'That''s what she said'),
-(22, 20, 'blue', 'pokédesign', 'teenager', 'male', 'cotton', 'Cool'),
-(23, 15.75, 'red', 'pokédesign', 'teenager', 'male', 'pokéterial', 'Nice cool pokédesign tshirt out of pokéterial');
+(21, 3.33, 'Black', 'lendesigns', 'teenager', 'female', 'cotton', 'That''s what she said');
 
 -- --------------------------------------------------------
 
@@ -108,17 +97,7 @@ CREATE TABLE IF NOT EXISTS `Orders` (
   `Status` int(11) NOT NULL,
   PRIMARY KEY (`OID`),
   UNIQUE KEY `OID` (`OID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Gegevens worden uitgevoerd voor tabel `Orders`
---
-
-INSERT INTO `Orders` (`OID`, `AID`, `Order`, `Status`) VALUES
-(1, 1, '1-2-19', 1),
-(2, 1, '1-2-19', 0),
-(3, 1, '1-2-19', 0),
-(4, 2, '1-2-19', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -133,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `tshirt` (
   `sleeves` text NOT NULL,
   PRIMARY KEY (`tid`),
   UNIQUE KEY `cid` (`cid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `tshirt`
@@ -160,9 +139,7 @@ INSERT INTO `tshirt` (`tid`, `cid`, `format`, `sleeves`) VALUES
 (19, 18, 'normal', 'short sleeves'),
 (20, 19, 'normal', 'short sleeves'),
 (21, 20, 'normal', 'short sleeves'),
-(22, 21, 'normal', 'long sleeves'),
-(23, 22, 'normal', 'long'),
-(24, 23, 'normal', 'long');
+(22, 21, 'normal', 'long sleeves');
 
 -- --------------------------------------------------------
 
@@ -177,16 +154,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `manager` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `users`
 --
 
 INSERT INTO `users` (`uid`, `username`, `password`, `manager`) VALUES
-(3, 'matthias.v.gestel@gmail.com', '2db7b94de7c55574ff9d83217595b003', 1),
-(4, 'darquennes.dries@gmail.com', '5b6586c9f760cedd413b8a3e42d55fb6', 1),
-(5, 'fenrig@gmail.com', '3f434f4547edd0af7cdd9b6b2e2f34e3', 1);
+(3, 'matthias.v.gestel@gmail.com', '2db7b94de7c55574ff9d83217595b003', 0),
+(4, 'darquennes.dries@gmail.com', '5b6586c9f760cedd413b8a3e42d55fb6', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

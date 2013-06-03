@@ -110,7 +110,7 @@ class Controller{
 										break;
 									case "image/jpg":
 									case "image/jpeg":
-										$backthumb = ".jpeg";
+										$backthumb = ".jpg";
 										break;
 									case "image/png":
 										$backthumb = ".png";
