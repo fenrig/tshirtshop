@@ -17,7 +17,7 @@ function searchfilter_checkboxes(&$sql_string, $sql_col_string, $value_array, &$
 			if($checkifconcatOR){
 				$sql_string .= ' OR';
 			}
-			$sql_string .= ' ' . $sql_col_string . ' = \'' . $value . '\'';
+			$sql_string .= ' ' . $sql_col_string . ' = \'' . mysql_real_escape_string($value) . '\'';
 			$checkifconcatOR = TRUE;
 		}
 		$sql_string .= ' )';
@@ -28,10 +28,10 @@ function searchfilter_checkboxes(&$sql_string, $sql_col_string, $value_array, &$
 class Model{
 	public function addTshirt(&$price, &$color, &$brand, &$agegroup, &$sex, &$fabric, &$description, &$format, &$sleeves){
 		$sql = new dbconnection();
-		$result = $sql->query("INSERT INTO `clothings`(`cid`, `price`, `color`, `brand`, `agegroup`, `sex`, `fabric`, `description`) VALUES (NULL, '$price', '$color', '$brand', '$agegroup', '$sex', '$fabric', '$description')");
-		$result = $sql->query("SELECT `cid` FROM `clothings` WHERE `description` = '$description' AND `color` = '$color' AND `brand` = '$brand' AND `agegroup` = '$agegroup'  AND `sex` = '$sex' AND `fabric` = '$fabric'");
+		$result = $sql->query("INSERT INTO `clothings`(`cid`, `price`, `color`, `brand`, `agegroup`, `sex`, `fabric`, `description`) VALUES (NULL, 'mysql_real_escape_string($price)', 'mysql_real_escape_string($color)', 'mysql_real_escape_string($brand)', 'mysql_real_escape_string($agegroup)', 'mysql_real_escape_string($sex)', 'mysql_real_escape_string($fabric)', 'mysql_real_escape_string($description)')");
+		$result = $sql->query("SELECT `cid` FROM `clothings` WHERE `description` = 'mysql_real_escape_string($description)' AND `color` = 'mysql_real_escape_string($color)' AND `brand` = 'mysql_real_escape_string($brand)' AND `agegroup` = 'mysql_real_escape_string($agegroup)'  AND `sex` = 'mysql_real_escape_string($sex)' AND `fabric` = 'mysql_real_escape_string($fabric)'");
 		$row = mysqli_fetch_row($result);
-		$result = $sql->query("INSERT INTO `tshirt`(`tid`, `cid`, `format`, `sleeves`) VALUES (NULL, '$row[0]', '$format', '$sleeves')");
+		$result = $sql->query("INSERT INTO `tshirt`(`tid`, `cid`, `format`, `sleeves`) VALUES (NULL, 'mysql_real_escape_string($row[0])', 'mysql_real_escape_string($format)', 'mysql_real_escape_string($sleeves)')");
 		return $row[0];
 	}
 
@@ -73,7 +73,7 @@ public function getOrder(&$cid){
 			$UID = $this->getUID($_SESSION['username']);
 		}
  		$sql  = new dbconnection();
- 		$result = $sql->query("INSERT INTO `Addresses` (`AID`,`country`,`province`, `city`, `street`, `number`, `extra`, `UID`) VALUES ('NULL','" .$country."','". $province ."','" .$city."','" .$street."','" .$number."','" .$extra."','" .$UID."');");
+ 		$result = $sql->query("INSERT INTO `Addresses` (`AID`,`country`,`province`, `city`, `street`, `number`, `extra`, `UID`) VALUES ('NULL','" .mysql_real_escape_string($country)."','". mysql_real_escape_string($province) ."','" .mysql_real_escape_string($city)."','" .mysql_real_escape_string($street)."','" .mysql_real_escape_string($number)."','" .mysql_real_escape_string($extra)."','" .mysql_real_escape_string($UID)."');");
 		if ($result) {
 			return $sql->getLastID();
 		}
@@ -85,7 +85,7 @@ public function getOrder(&$cid){
 		if (isset($_COOKIE["trolley"])) {
 			$troll = $_COOKIE['trolley'];
 			$sql  = new dbconnection();
-			$result = $sql->query("INSERT INTO `Orders` (`OID`,`AID`,`Order`,`Status`) VALUES ('NULL','". $AID ."','". $troll ."','0');");
+			$result = $sql->query("INSERT INTO `Orders` (`OID`,`AID`,`Order`,`Status`) VALUES ('NULL','". mysql_real_escape_string($AID) ."','". mysql_real_escape_string($troll) ."','0');");
  			return $result;
  		}
  	}
@@ -105,21 +105,21 @@ public function getOrder(&$cid){
 		$checkifconcatAND = FALSE;
 		$sql_string = 'SELECT * FROM `tshirt` INNER JOIN `clothings` ON tshirt.cid = clothings.cid WHERE';
 		if($general_term != NULL){
-			$sql_string .= ' clothings.description LIKE \'%' . $general_term . '%\'';
+			$sql_string .= ' clothings.description LIKE \'%' . mysql_real_escape_string($general_term) . '%\'';
 			$checkifconcatAND = TRUE;
 		}
 		if($agegroup != NULL){
 			if($checkifconcatAND){
 				$sql_string .= ' AND';
 			}
-			$sql_string .= ' clothings.agegroup = \'' . $agegroup . '\'';
+			$sql_string .= ' clothings.agegroup = \'' . mysql_real_escape_string($agegroup) . '\'';
 			$checkifconcatAND = TRUE;
 		}
 		if($sex != NULL){
 			if($checkifconcatAND){
 				$sql_string .= ' AND';
 			}
-			$sql_string .= ' ( clothings.sex = \'' . $sex . '\' OR  clothings.sex LIKE \'unisex\' )';
+			$sql_string .= ' ( clothings.sex = \'' . mysql_real_escape_string($sex) . '\' OR  clothings.sex LIKE \'unisex\' )';
 			$checkifconcatAND = TRUE;
 		}
  
@@ -136,13 +136,13 @@ public function getOrder(&$cid){
 
 	public function upgradeUser($username){
 		$sql  = new dbconnection();
-		$result = $sql->query("UPDATE `users` SET manager='1' WHERE username = '$username'");
+		$result = $sql->query("UPDATE `users` SET manager='1' WHERE username = 'mysql_real_escape_string($username)'");
 		return $result;
 	}
 
 	public function ship(&$orderid){
 		$sql  = new dbconnection();
-		$result = $sql->query("UPDATE `Orders` SET Status='1' WHERE OID = '$orderid'");
+		$result = $sql->query("UPDATE `Orders` SET Status='1' WHERE OID = 'mysql_real_escape_string($orderid)'");
 		return $result;
 	}
 }
