@@ -9,7 +9,7 @@
 	$secondquery = mysqli_fetch_array($address);
 	$user = $this->sql->query("SELECT * FROM  `users` WHERE uid = $secondquery[7]");
 	$thirdquery = mysqli_fetch_array($user);
-
+	
 ?>
 	<table>
 		<tr>
@@ -48,8 +48,9 @@
 	foreach ($pieces as $piece){
 		if($piece == '') continue;
 		$order = explode('-', $piece);
-
-		echo "<tr><td>" . $order[0] . "</td><td>" . $order[1] . "</td></tr>";
+		$tidx = $this->sql->query("SELECT tid FROM  `tshirt` WHERE cid = $order[0]");
+		$tidc = mysqli_fetch_array($tidx);
+		echo "<tr><td><a href=\"/tshirt/$tidc[0]\">" . $order[0] . "</a></td><td>" . $order[1] . "</td></tr>";
 	}
 ?>
 	</table>
