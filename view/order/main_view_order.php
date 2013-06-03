@@ -38,9 +38,10 @@
 		</tr>
 	</table>
 	<hr>
-	<table>
+	<table style="border-width: 2px; border-style:solid; border: 1px solid black;">
 		<tr>
-			<th>Order ID</th>
+			<th>Product ID</th>
+			<th>Product Name</th>
 			<th>Quantity</th>
 		</tr>
 <?php
@@ -48,9 +49,11 @@
 	foreach ($pieces as $piece){
 		if($piece == '') continue;
 		$order = explode('-', $piece);
-		$tidx = $this->sql->query("SELECT tid FROM  `tshirt` WHERE cid = $order[0]");
+		$tidx = $this->sql->query("SELECT tid FROM `tshirt` WHERE cid = $order[0]");
 		$tidc = mysqli_fetch_array($tidx);
-		echo "<tr><td><a href=\"/tshirt/$tidc[0]\">" . $order[0] . "</a></td><td>" . $order[1] . "</td></tr>";
+		$clothing = $this->sql->query("SELECT * FROM `clothings` WHERE cid = $order[0]");
+		$clothingc = mysqli_fetch_array($clothing);
+		echo "<tr><td><a href=\"/tshirt/$tidc[0]\">" . $order[0] . "</a></td><td><a href=\"/tshirt/$tidc[0]\">" . $clothingc[7]. "</a></td><td>" . $order[1] . "</td></tr>";
 	}
 ?>
 	</table>
