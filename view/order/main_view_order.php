@@ -1,6 +1,7 @@
 <?php
 
 	global $orderid;
+	$orderid = mysql_real_escape_string($orderid);
 	include_once('includes/sql.php');
 	if( isset($this->sql) == false) $this->sql = new dbconnection();
 	$order  = $this->sql->query("SELECT `AID`,`Order`,`Status` FROM  `Orders` WHERE OID = $orderid");

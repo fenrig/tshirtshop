@@ -40,7 +40,7 @@ class Controller{
 			$page = $uri[1];
 		}
 		if(sizeof($uri) > 2 /* && !empty($uri[2]) */){
-			$post = $uri[2];
+			$post = mysql_real_escape_string($uri[2]);
 		}
 		// END ADDRESS RESOLUTION
 		if(isset($page)){

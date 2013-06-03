@@ -28,10 +28,10 @@ function searchfilter_checkboxes(&$sql_string, $sql_col_string, $value_array, &$
 class Model{
 	public function addTshirt(&$price, &$color, &$brand, &$agegroup, &$sex, &$fabric, &$description, &$format, &$sleeves){
 		$sql = new dbconnection();
-		$result = $sql->query("INSERT INTO `clothings`(`cid`, `price`, `color`, `brand`, `agegroup`, `sex`, `fabric`, `description`) VALUES (NULL, 'mysql_real_escape_string($price)', 'mysql_real_escape_string($color)', 'mysql_real_escape_string($brand)', 'mysql_real_escape_string($agegroup)', 'mysql_real_escape_string($sex)', 'mysql_real_escape_string($fabric)', 'mysql_real_escape_string($description)')");
-		$result = $sql->query("SELECT `cid` FROM `clothings` WHERE `description` = 'mysql_real_escape_string($description)' AND `color` = 'mysql_real_escape_string($color)' AND `brand` = 'mysql_real_escape_string($brand)' AND `agegroup` = 'mysql_real_escape_string($agegroup)'  AND `sex` = 'mysql_real_escape_string($sex)' AND `fabric` = 'mysql_real_escape_string($fabric)'");
+		$result = $sql->query("INSERT INTO `clothings`(`cid`, `price`, `color`, `brand`, `agegroup`, `sex`, `fabric`, `description`) VALUES (NULL, '" . mysql_real_escape_string($price) . "', '" . mysql_real_escape_string($color) . "', '" . mysql_real_escape_string($brand) . "', '" . mysql_real_escape_string($agegroup) . "', '" . mysql_real_escape_string($sex). "', '" . mysql_real_escape_string($fabric) . "', '" . mysql_real_escape_string($description) . "')");
+		$result = $sql->query("SELECT `cid` FROM `clothings` WHERE `description` = '" . mysql_real_escape_string($description). "' AND `color` = '" . mysql_real_escape_string($color) . "' AND `brand` = '" . mysql_real_escape_string($brand) . "' AND `agegroup` = '" . mysql_real_escape_string($agegroup) . "'  AND `sex` = '" . mysql_real_escape_string($sex) . "' AND `fabric` = '" . mysql_real_escape_string($fabric) . "'");
 		$row = mysqli_fetch_row($result);
-		$result = $sql->query("INSERT INTO `tshirt`(`tid`, `cid`, `format`, `sleeves`) VALUES (NULL, 'mysql_real_escape_string($row[0])', 'mysql_real_escape_string($format)', 'mysql_real_escape_string($sleeves)')");
+		$result = $sql->query("INSERT INTO `tshirt`(`tid`, `cid`, `format`, `sleeves`) VALUES (NULL, '" . mysql_real_escape_string($row[0]). "', '" . mysql_real_escape_string($format). "', '" . mysql_real_escape_string($sleeves) . "')");
 		return $row[0];
 	}
 
@@ -136,13 +136,13 @@ public function getOrder(&$cid){
 
 	public function upgradeUser($username){
 		$sql  = new dbconnection();
-		$result = $sql->query("UPDATE `users` SET manager='1' WHERE username = 'mysql_real_escape_string($username)'");
+		$result = $sql->query("UPDATE `users` SET manager='1' WHERE username = '" . mysql_real_escape_string($username) . "'");
 		return $result;
 	}
 
 	public function ship(&$orderid){
 		$sql  = new dbconnection();
-		$result = $sql->query("UPDATE `Orders` SET Status='1' WHERE OID = 'mysql_real_escape_string($orderid)'");
+		$result = $sql->query("UPDATE `Orders` SET Status='1' WHERE OID = '" . mysql_real_escape_string($orderid) . "'");
 		return $result;
 	}
 }
