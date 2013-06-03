@@ -3,7 +3,7 @@
 	global $orderid;
 	include_once('includes/sql.php');
 	if( isset($this->sql) == false) $this->sql = new dbconnection();
-	$order  = $this->sql->query("SELECT `AID`,`Order` FROM  `Orders` WHERE OID = $orderid");
+	$order  = $this->sql->query("SELECT `AID`,`Order`,`Status` FROM  `Orders` WHERE OID = $orderid");
 	$firstquery = mysqli_fetch_array($order);
 	$address = $this->sql->query("SELECT * FROM  `Addresses` WHERE AID = $firstquery[0]");
 	$secondquery = mysqli_fetch_array($address);
@@ -59,5 +59,14 @@
 	</table>
 	<hr>
 <?php
-	echo "<a href=\"/shipped/$orderid\">Shipped</a>";
+	switch($firstquery[2]){
+		case 0:
+			echo "<a href=\"/shipped/$orderid\">Shipped</a>";
+			break;
+		case 1:
+			echo "Already Shipped";
+			break;
+		default:
+			echo "oei";
+	}
 ?>
