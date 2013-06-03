@@ -8,7 +8,7 @@
 ?>
 <div class="searchbar">
 	<div id="mainform">
-	<form action="search/" method="get">
+	<form action="/search/" method="get">
 		<span>
 			<input type="text" id="searchbari" class="search square" name="q" placeholder="Search..." />
 			<input class="searchbutton" type="submit" value="Search" />

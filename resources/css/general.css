@@ -1,5 +1,6 @@
 .dark {
 	background: url('/misc/dark_grey.jpg');
+	color: white;
 }
 
 .error{
@@ -15,4 +16,17 @@
 	color: white;
 	font-weight: bold;
 	text-align: center;
+}
+
+.dark a:visited,a:hover,a:active{
+	color: white;
+	font-weight: bold;
+}
+
+.dark .vertical_menu a:visited,a:hover,a:active{
+	color: black;
+}
+
+.dark .vertical_menu h4 a:visited,a:hover,a:active{
+	color: white;
 }

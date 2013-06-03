@@ -1,11 +1,51 @@
 <html>
-<head></head>
-<body>
-	<form action="regis" method="post">
-		Username(Email): <input type="email" name="user" /><br/>
-		Password: <input type="password" name="password1" /><br/>
-		Password: <input type="password" name="password2" /><br/>
-		<input type="submit" />
-	</form>
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/tshirts.css">
+	<link rel="stylesheet" type="text/css" href="/css/search.css">
+	<link rel="stylesheet" type="text/css" href="/css/general.css">
+	<link rel="stylesheet" type="text/css" href="/css/vertical_menu.css">
+</head>
+<body class="dark">
+	<template>vertical_menu</template>
+	<div id="main_space"> </div>
+	<div id="main_content">
+		<template>search_bar</template>
+		<div style="clear: both;">
+			<form action="regis" method="post">
+				<table>
+					<tr>
+						<td>
+							Username:
+						</td>
+						<td>
+							<input type="email" name="user" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Password:
+						</td>
+						<td>
+							<input type="password" name="password1" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Password:
+						</td>
+						<td>
+							<input type="password" name="password2" />
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<input type="submit" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

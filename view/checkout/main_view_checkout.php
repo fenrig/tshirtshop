@@ -1,4 +1,4 @@
-<div class="checkout">
+<div class="checkout" style="clear: both;">
 <?php
 	if (isset($_COOKIE["trolley"])) {
 		global $Orders;
@@ -9,6 +9,7 @@
 		echo "<th>Product</th>";
 		echo "<th>Quantity</th>";
 		echo "<th>Price Per Product</th>";
+		echo "<th></th>";
 		foreach ($pieces as $piece) {
 			$lpiece =explode('-',$piece);
 			echo "<tr>";
@@ -27,7 +28,15 @@
 			echo "</tr>";		
 			$counter++;
 		}
+		echo "<tr>";
+		echo "<td></td>";
+		echo "<td></td>";
+		echo "<td></td>";
+		echo "<td style=\"text-align: center;\">";
 		echo "<a id='Purchase' href='/purchase'>Confirm Order</a>";
+		echo "</td>";
+		echo "</tr>";
+		echo "</table>";
 	}
 	else {
 		echo "U don't have any items in your trolley yet";

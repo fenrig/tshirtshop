@@ -25,17 +25,23 @@
 	}
 	?>
 	</div>
-	<div id="pages">
+	
+	<div id="pages" style="text-align: center;">
+		<hr>
 		<span>
 		<?php
 			include_once('includes/sql.php');
 			if( isset($this->sql) == false){ $this->sql = new dbconnection(); }
 			$result = $this->sql->query("SELECT COUNT(*) as count FROM clothings");
 			$count = mysqli_fetch_array($result);
-			global $count;
-			# var_dump($result);
-			foreach(range(0,($count[0] / 20),1) as $counter){
-				echo '<a href="#">' . $counter . '</a>';
+			#global $count;
+			# var_dump($result);;
+			$countermax = ceil($count[0] / 20);
+			foreach(range(1,$countermax, 1) as $counter){
+				echo "<a href=\"/tshirts/$counter\">" . $counter . '</a>';
+				if($countermax != $counter){
+					echo " * ";
+				}
 			}
 		?>
 		</span>
