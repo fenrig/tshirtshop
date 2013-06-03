@@ -46,7 +46,7 @@ class Controller{
 		if(isset($page)){
 			switch($page){
 				case "tshirt":
-					if(isset($post)){
+					if(isset($post) and $post != ''){
 						global $tshirt;
 						$tshirt = $this->model->getTshirt($post);
 						if(! $tshirt == NULL)
@@ -243,28 +243,28 @@ class Controller{
 					
 					break;
 				case "thumbn":
-					if(isset($post)){
+					if(isset($post) and $post != ''){
 						thumbnail($post);
 					}else{
 						$this->notFound();
 					}
 					break;
 				case "fulln":
-					if(isset($post)){
+					if(isset($post) and $post != ''){
 						fullnail($post);
 					}else{
 						$this->notFound();
 					}
 					break;
 				case "css":
-					if(isset($post)){
+					if(isset($post) and $post != ''){
 						getcss($post);
 					}else{
 						$this->notFound();
 					}
 					break;
 				case "misc":
-					if(isset($post)){
+					if(isset($post) and $post != ''){
 						getmisc($post);
 					}else{
 						$this->notFound();
@@ -293,6 +293,22 @@ class Controller{
 						$this->view->page('orders');
 					else 
 						$this->view->page('noPermission');
+					break;
+				case "order":
+					if(isset($post) and $post != ''){
+						global $orderid;
+						$orderid = $post;
+						$this->view->page('order');
+						break;
+					}
+				case "shipped":
+					if(isset($_SESSION["storeManager"]) AND $_SESSION["storeManager"] == TRUE and isset($post)){
+						$orderid = mysql_real_escape_string($post);
+						$this->model->ship($orderid);
+						header('Location: /orders');
+					}else{
+						$this->view->page('noPermission');
+					}
 					break;
 				default:
 					$this->notFound();

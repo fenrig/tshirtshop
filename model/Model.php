@@ -139,6 +139,12 @@ public function getOrder(&$cid){
 		$result = $sql->query("UPDATE `users` SET manager='1' WHERE username = '$username'");
 		return $result;
 	}
+
+	public function ship(&$orderid){
+		$sql  = new dbconnection();
+		$result = $sql->query("UPDATE `Orders` SET Status='1' WHERE OID = '$orderid'");
+		return $result;
+	}
 }
  
 ?>

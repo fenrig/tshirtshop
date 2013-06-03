@@ -23,7 +23,12 @@
     <div class="menu-item">
       <h4><a href="#"><?php if(isset($_SESSION['username'])) echo $_SESSION['username']; else echo "<a href=\"#\" onclick=\"SavePage('/login')\">Login</a>"; ?></a></h4>
       <ul>
-        <li><a href="/register">Register</a></li>
+        <li>
+<?php
+  if(! isset($_SESSION))
+    echo '<a href="/register">Register</a>';
+?>
+        </li>
         <li><a href=""></a></li>
         <li><a href="#" onclick="SavePage('/logout')">Logout</a></li>
       </ul>
