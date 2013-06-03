@@ -147,6 +147,7 @@ class Controller{
 					else {
 						$this->view->page('roundof');
 					}
+					break;
 				case "checkout":
 					global $Orders;
 					if (isset($_COOKIE["trolley"])) {
