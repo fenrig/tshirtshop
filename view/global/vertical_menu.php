@@ -25,7 +25,7 @@
       <ul>
         <li>
 <?php
-  if(! isset($_SESSION))
+  if(! isset($_SESSION['username']))
     echo '<a href="/register">Register</a>';
 ?>
         </li>
